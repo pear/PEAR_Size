@@ -11,7 +11,18 @@
  * @version  CVS: <cvs_id>
  * @link     Size.php
  */
-require_once("HTML/Table.php");
+require_once "HTML/Table.php";
+/**
+ * PEAR_Size_HTML_Table
+ *
+ * @uses    HTML_Table
+ * @category Size
+ * @package  Size
+ * @author   Ken Guest <ken@linux.ie>
+ * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @version  CVS: <cvs_id>
+ * @link     Size_Output_html.php
+ */
 class PEAR_Size_HTML_Table extends HTML_Table
 {
 
@@ -24,21 +35,34 @@ class PEAR_Size_HTML_Table extends HTML_Table
      * @access public
      * @return void
      */
-    function getTable() {
+    public function getTable()
+    {
         return $this->toHtml();
     }
 }
-class PEAR_Size_Output_html implements iPEAR_Size_Output_Driver
+/**
+ * PEAR_Size_Output_html
+ *
+ * @uses PEAR_Size_Output_Driver
+ * @category Size
+ * @package  Size
+ * @author   Ken Guest <ken@linux.ie>
+ * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @version  CVS: <cvs_id>
+ * @link     Size_Output_html.php
+ */
+class PEAR_Size_Output_html implements PEAR_Size_Output_Driver
 {
     /**
      * display given text.
      *
-     * @param string $text
+     * @param string $text specified text to be displayed
      *
      * @access public
      * @return void
      */
-    public function display($text) {
+    public function display($text)
+    {
         echo $text, "<br/>\n";
     }
     /**
@@ -49,7 +73,8 @@ class PEAR_Size_Output_html implements iPEAR_Size_Output_Driver
      * @access public
      * @return void
      */
-    public function table() {
+    public function table()
+    {
         $tbl = new PEAR_Size_HTML_Table();
         return $tbl;
     }

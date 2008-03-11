@@ -9,20 +9,32 @@
  * @author   Ken Guest <ken@linux.ie>
  * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
  * @version  CVS: <cvs_id>
+ * @link     Size_Output_text.php
+ */
+require_once "Console/Table.php";
+/**
+ * PEAR_Size_Output_text
+ *
+ * @uses iPEAR_Size_Output_Driver
+ * @category Size
+ * @package  Size
+ * @author   Ken Guest <ken@linux.ie>
+ * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @version  CVS: <cvs_id>
  * @link     Size.php
  */
-require_once("Console/Table.php");
-class PEAR_Size_Output_text implements iPEAR_Size_Output_Driver
+class PEAR_Size_Output_text implements PEAR_Size_Output_Driver
 {
     /**
      * display given text.
      *
-     * @param string $text
+     * @param string $text text to be displayed
      *
      * @access public
      * @return void
      */
-    public function display($text) {
+    public function display($text)
+    {
         echo $text, "\n";
     }
     /**
@@ -33,13 +45,9 @@ class PEAR_Size_Output_text implements iPEAR_Size_Output_Driver
      * @access public
      * @return void
      */
-    public function table() {
-        //if possible, turn off the ascii art
-        if (defined('CONSOLE_TABLE_BORDER_OFF')) {
-            $tbl = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT, CONSOLE_TABLE_BORDER_OFF);
-        } else {
-            $tbl = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT);
-        }
+    public function table()
+    {
+        $tbl = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT);
         return $tbl;
     }
 }
