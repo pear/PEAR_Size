@@ -1,0 +1,26 @@
+Usage: pearsize [OPTIONS] [PACKAGE]
+Display information on how much space an installed PEAR package required.
+
+  -a, --all            display information for all installed packages
+  -A, --allchannels    list packages from all channels, not just the default one
+  -c, --channel        specify which channel
+  -h, --human-readable print sizes in human readable format (for example: 492 B 1KB 7MB)
+  -H, --si             likewise, but use powers of 1000 not 1024
+  -t, --type           specify what type of files are required for the report
+                       by default all types are assumed
+  -S                   sort by file size
+  -v, --verbose        display more detailed information
+      --help           display this help and exit
+  -V, --version        output version information and exit
+
+Types:
+You can specify a subset of roles/file-types to be listed in the report.
+These roles are those as supported by the PEAR installer.
+These are: data, doc, php, script, test
+
+Examples:
+              $ pearsize --all
+              $ pearsize Console_Table
+              $ pearsize -ttest,doc Console_Table
+              $ pearsize --type=test,doc,php -h Console_Table Date_Holidays
+              
