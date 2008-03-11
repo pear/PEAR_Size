@@ -40,7 +40,7 @@ require 'PEAR/Size/Factory.php';
  * @access public
  * @return string
  */
-function PEAR_Size_sizeReadable($size, $retstring = null, $round = false)
+public function PEAR_Size_sizeReadable($size, $retstring = null, $round = false)
 {
     //adapted from code at http://aidanlister.com/repos/v/function.size_readable.php
     $sizes  = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
@@ -88,7 +88,7 @@ class PEAR_Size
      * @param array $a stats array entry
      * @param array $b stats array entry
      *
-     * @access public
+     * @access private
      * @return int -1 if total in $a is less than $b, else 1.
      */
     private function _sortBySize($a, $b)
@@ -110,7 +110,7 @@ class PEAR_Size
      * @param boolean $readable human readable form?
      * @param boolean $round    round to values of 1000 rather than 1024?
      *
-     * @access public
+     * @access private
      * @return string
      */
     private function _readableLine($value, $readable, $round)
@@ -133,7 +133,20 @@ class PEAR_Size
      * @param int    $channel_index index value of entry in channels_full array to
      *                              search for packages
      *
-     * @access public
+     * @access private
+     * @return array
+     */
+    /**
+     * _analysePackages
+     *
+     * Analyse packages associated with specified channel
+     *
+     * @param array  $packages      array of names of packages to search forr.
+     * @param object $reg           PEAR Registry object.
+     * @param int    $channel_index index value of entry in channels_full array to
+     *                              search for packages
+     *
+     * @access private
      * @return array
      */
     private function _analysePackages($packages, $reg, $channel_index)
@@ -148,8 +161,8 @@ class PEAR_Size
             if (strlen($package) > $this->name_length) {
                 $this->name_length = strlen($package);
             }
-        $sizes = array('data'=>0, 'doc'=>0, 'script'=>0, 'php'=>0, 'test'=>0);
-        $pkg   = $this->reg->getPackage($package, $this->channels_full[$index]);
+            $sizes = array('data'=>0, 'doc'=>0, 'script'=>0, 'php'=>0, 'test'=>0);
+            $pkg   = $this->reg->getPackage($package, $this->channels_full[$index]);
             if ($pkg === null) {
                 array_push($this->errors, "Package $package not found");
                 continue;
@@ -188,15 +201,15 @@ class PEAR_Size
      * @param array $stats   array of statistics
      * @param mixed $details additional details
      *
-     * @access public
+     * @access private
      * @return void
      */
     private function _channelReport($stats, $details)
     {
-        $table = $this->_driver->table();
+        $table         = $this->_driver->table();
         $content_added = false;
         foreach ($stats as $statistic) {
-            $content = array();
+            $content   = array();
             $content[] = $statistic['package'];
             $content[] = $this->_readableLine($statistic['total'],
                                               $this->readable,
@@ -210,7 +223,7 @@ class PEAR_Size
                             $this->round);
                     $line .= "; ";
                 }
-                $line = substr($line, 0, strlen($line) - 2);
+                $line      = substr($line, 0, strlen($line) - 2);
                 $content[] = "($line)";
             }
             if ($content !== array() ) {
@@ -272,13 +285,16 @@ class PEAR_Size
     /**
      * setOutputDriver
      *
-     * @param mixed $type
+     * @param string $type name the type of driver (html, text...)
+     *
      * @access public
      * @return void
      */
     public function setOutputDriver($type)
     {
+        //get the factory
         $factory = new PEAR_Size_OutputFactory();
+        //and create the driver...
         $this->_driver = $factory->createInstance($type);
     }
 
@@ -384,7 +400,8 @@ class PEAR_Size
         if ($channel_pos === false) {
             $channel_pos = array_search($channel_name, $this->channels_full);
             if ($channel_pos === false) {
-                array_push($this->errors, "Channel \"$channel_name\" does not exist");
+                array_push($this->errors,
+                           "Channel \"$channel_name\" does not exist");
             }
         }
         if ($channel_pos) {
@@ -489,15 +506,23 @@ class PEAR_Size
                 exit(PEAR_SIZE_INVALID_OPTIONS);
             }
             foreach ($this->channel as $index=>$given) {
-                $packages = $this->options[1];
+                $packages  = $this->options[1];
+                $cposition = $this->channels_full[$index];
                 //analyse
-                $channel_stats[$this->channels_full[$index]] = $this->_analysePackages($packages, $this->reg, $index);
+                $channel_stats[$cposition] = $this->_analysePackages($packages,
+                                                                     $this->reg,
+                                                                     $index);
             }
         } else {
             foreach ($this->channel as $index=>$given) {
-                $packages = $this->reg->listPackages($this->reg_channels[$index]->getAlias());
+                $chanalias = $this->reg_channels[$index]->getAlias();
+                $packages  = $this->reg->listPackages($chanalias);
+                $cposition = $this->channels_full[$index];
                 sort($packages);
-                $channel_stats[$this->channels_full[$index]] = $this->_analysePackages($packages, $this->reg, $index);
+                //analyse
+                $channel_stats[$cposition] = $this->_analysePackages($packages,
+                                                                     $this->reg,
+                                                                     $index);
             }
         }
         $this->channel_stats = $channel_stats;
@@ -514,7 +539,7 @@ class PEAR_Size
         $indices = substr($this->search_roles, 1, strlen($this->search_roles) - 2);
         $details = explode("|", $indices);
 
-        $msg = "Total: ";
+        $msg  = "Total: ";
         $msg .= $this->_readableLine($this->grand_total,
                 $this->readable,
                 $this->round);
