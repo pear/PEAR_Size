@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+ <name>PEAR_Size</name>
+ <channel>pear.php.net</channel>
+ <summary>Determine and list how much filespace each installed package consumes.</summary>
+ <description>A commandline tool modeled on 'df' that lists how much filespace each installed package consumes. A subset of packages can be specified as can channels.</description>
+ <lead>
+  <name>Ken Guest</name>
+  <user>kguest</user>
+  <email>kguest@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-03-01</date>
+ <time>19:05:05</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+ <notes>Initial release</notes>
+ <contents>
+  <dir baseinstalldir="PEAR" name="/">
+   <dir name="scripts">
+   <file baseinstalldir="/" name="pearsize.bat" role="script" install-as="pearsize.bat">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+    <tasks:windowseol />
+   </file>
+   <file baseinstalldir="/" name="pearsize.php" role="script" install-as="pearsize">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    <tasks:unixeol />
+   </file>
+   </dir>
+   <file baseinstalldir="/" name="Size/Size.php" role="php" install-as="PEAR/Size.php"/>
+   <file baseinstalldir="/" name="Size/Size_Factory.php" role="php" install-as="PEAR/Size/Factory.php"/>
+   <file baseinstalldir="/" name="Size/Size_Output_text.php" role="php" install-as="PEAR/Size/Output_text.php"/>
+   <file baseinstalldir="/" name="Size/Size_Output_html.php" role="php" install-as="PEAR/Size/Output_html.php"/>
+   <file name="TODO" role="doc" />
+   <dir name="docs">
+    <file name="script-usage.txt" role="doc" />
+   </dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.4</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
+   <package>
+    <name>Console_Getargs</name>
+    <channel>pear.php.net</channel>
+    <min>1.3.4</min>
+   </package>
+   <package>
+    <name>Console_Table</name>
+    <channel>pear.php.net</channel>
+    <min>1.0.8</min>
+   </package>
+   <package>
+    <name>HTML_Table</name>
+    <channel>pear.php.net</channel>
+    <min>1.8.2</min>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease>
+  <installconditions>
+   <os>
+    <name>windows</name>
+   </os>
+  </installconditions>
+  <filelist>
+   <install name="scripts/pearsize.bat" as="pearsize.bat" />
+  </filelist>
+ </phprelease>
+ <phprelease>
+  <filelist>
+   <ignore name="scripts/pearsize.bat"/>
+  </filelist>
+ </phprelease>
+ <changelog>
+  <release>
+   <version>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-01-05</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>Initial version</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-01-05</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>Initial version</notes>
+  </release>
+ </changelog>
+</package>
