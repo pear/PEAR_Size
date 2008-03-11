@@ -145,11 +145,11 @@ $options = Console_Getopt::getopt($argv, "aAc:hHt:SVv", $long_options);
 
 if (PEAR::isError($options)) {
     usage($options);
-    exit(INVALID_OPTIONS);
+    exit(PEAR_SIZE_INVALID_OPTIONS);
 }
 if (empty($options[0]) && empty($options[1])) {
     usage();
-    exit(INVALID_OPTIONS);
+    exit(PEAR_SIZE_INVALID_OPTIONS);
 }
 
 ini_set('max_execution_time', 0);
