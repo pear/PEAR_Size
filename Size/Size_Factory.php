@@ -8,7 +8,7 @@
  * @category Size_Factory
  * @package  Size_Factory
  * @author   Ken Guest <ken@guest.cx>
- * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
  * @link     Size_Factory.php
  */
@@ -27,9 +27,9 @@ interface PEAR_Size_Output_Driver
  * @category  Size_Factory
  * @package   Size_Factory
  * @uses      PEAR_SIZE_Factory
- * @author    Ken Guest <ken@guest.cx>
+ * @author    Ken Guest <kguest@php.net>
  * @copyright 1997-2005 The PHP Group
- * @license   GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version   CVS: <cvs_id>
  * @link      Size_Factory.php
  */

@@ -7,7 +7,7 @@
  * @category Size
  * @package  Size
  * @author   Ken Guest <ken@linux.ie>
- * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
  * @link     Size_Output_text.php
  */
@@ -19,7 +19,7 @@ require_once "Console/Table.php";
  * @category Size
  * @package  Size
  * @author   Ken Guest <ken@linux.ie>
- * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
  * @link     Size.php
  */

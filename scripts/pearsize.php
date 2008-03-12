@@ -10,7 +10,7 @@
  * @category PearSize
  * @package  PearSize
  * @author   Ken Guest <kguest@php.net>
- * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
  * @link     pearsize.php
  *
