@@ -29,45 +29,6 @@ require_once 'PEAR/Registry.php';
 require 'PEAR/Size/Factory.php';
 
 /**
- * PEAR_Size_sizeReadable
- *
- * determine a more readable form of the given size.
- *
- * @param int     $size      size value
- * @param string  $retstring formatting string; null by default.
- * @param boolean $round     round to multiples of 1000? false by default.
- *
- * @access public
- * @return string
- */
-public function PEAR_Size_sizeReadable($size, $retstring = null, $round = false)
-{
-    //adapted from code at http://aidanlister.com/repos/v/function.size_readable.php
-    $sizes  = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-    $factor = 1024;
-    if ($round) {
-        $factor = 1000;
-    }
-    if ($retstring === null) {
-        $retstring = '%01.2f %s';
-    }
-    $lastsizestring = end($sizes);
-    foreach ($sizes as $sizestring) {
-        if ($size < $factor) {
-            break;
-        }
-        if ($sizestring !== $lastsizestring) {
-            $size /= $factor;
-        }
-    }
-    if ($sizestring === $sizes[0]) {
-        $retstring = '%01d %s';
-    } elseif ($sizestring === 'KB' && $round) {
-        $sizestring = 'kB';
-    }
-    return sprintf($retstring, $size, $sizestring);
-}
-/**
  * PEAR_Size
  *
  * @category  PEAR
@@ -81,6 +42,45 @@ public function PEAR_Size_sizeReadable($size, $retstring = null, $round = false)
 class PEAR_Size
 {
     /**
+     * _sizeReadable
+     *
+     * determine a more readable form of the given size.
+     *
+     * @param int     $size      size value
+     * @param string  $retstring formatting string; null by default.
+     * @param boolean $round     round to multiples of 1000? false by default.
+     *
+     * @return string
+     */
+    static function _sizeReadable($size, $retstring = null, $round = false)
+    {
+        //adapted from Public Domain licensed code at
+        //http://aidanlister.com/repos/v/function.size_readable.php
+        $sizes  = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        $factor = 1024;
+        if ($round) {
+            $factor = 1000;
+        }
+        if ($retstring === null) {
+            $retstring = '%01.2f %s';
+        }
+        $lastsizestring = end($sizes);
+        foreach ($sizes as $sizestring) {
+            if ($size < $factor) {
+                break;
+            }
+            if ($sizestring !== $lastsizestring) {
+                $size /= $factor;
+            }
+        }
+        if ($sizestring === $sizes[0]) {
+            $retstring = '%01d %s';
+        } elseif ($sizestring === 'KB' && $round) {
+            $sizestring = 'kB';
+        }
+        return sprintf($retstring, $size, $sizestring);
+    }
+    /**
      * _sortBySize
      *
      * Used for sorting stats array.
@@ -88,7 +88,6 @@ class PEAR_Size
      * @param array $a stats array entry
      * @param array $b stats array entry
      *
-     * @access private
      * @return int -1 if total in $a is less than $b, else 1.
      */
     private function _sortBySize($a, $b)
@@ -110,13 +109,12 @@ class PEAR_Size
      * @param boolean $readable human readable form?
      * @param boolean $round    round to values of 1000 rather than 1024?
      *
-     * @access private
      * @return string
      */
     private function _readableLine($value, $readable, $round)
     {
         if ($readable) {
-            return PEAR_Size_sizeReadable($value, null, $round);
+            return $this->_sizeReadable($value, null, $round);
         } else {
             return (string) $value;
         }
@@ -133,7 +131,6 @@ class PEAR_Size
      * @param int    $channel_index index value of entry in channels_full array to
      *                              search for packages
      *
-     * @access private
      * @return array
      */
     /**
@@ -146,7 +143,6 @@ class PEAR_Size
      * @param int    $channel_index index value of entry in channels_full array to
      *                              search for packages
      *
-     * @access private
      * @return array
      */
     private function _analysePackages($packages, $reg, $channel_index)
@@ -201,7 +197,6 @@ class PEAR_Size
      * @param array $stats   array of statistics
      * @param mixed $details additional details
      *
-     * @access private
      * @return void
      */
     private function _channelReport($stats, $details)
@@ -239,12 +234,11 @@ class PEAR_Size
     /**
      * class constructor
      *
-     * @access public
      * @return void
      */
     public function __construct()
     {
-        $this->config       = &PEAR_Config::singleton();
+        $this->config       = PEAR_Config::singleton();
         $this->reg          = $this->config->getRegistry();
         $this->channels     = array();
         $this->all          = false;
@@ -287,7 +281,6 @@ class PEAR_Size
      *
      * @param string $type name the type of driver (html, text...)
      *
-     * @access public
      * @return void
      */
     public function setOutputDriver($type)
@@ -305,7 +298,6 @@ class PEAR_Size
      *
      * @param bool $value defaults to true.
      *
-     * @access public
      * @return void
      */
     public function setVerbose($value = true)
@@ -320,7 +312,6 @@ class PEAR_Size
      *
      * @param bool $value defaults to true.
      *
-     * @access public
      * @return void
      */
     public function setHumanReadable($value = true)
@@ -335,7 +326,6 @@ class PEAR_Size
      *
      * @param bool $value defaults to true.
      *
-     * @access public
      * @return void
      */
     public function setSortSize($value = true)
@@ -350,7 +340,6 @@ class PEAR_Size
      *
      * @param bool $value defaults to true.
      *
-     * @access public
      * @return void
      */
     public function setAll($value = true)
@@ -361,7 +350,6 @@ class PEAR_Size
     /**
      * set variables for analysing all channels.
      *
-     * @access public
      * @return void
      */
     public function setAllChannels()
@@ -377,7 +365,6 @@ class PEAR_Size
      *
      * @param bool $value defaults to true
      *
-     * @access public
      * @return void
      */
     public function setRoundValues($value = true)
@@ -391,7 +378,6 @@ class PEAR_Size
      *
      * @param string $channel_name Either full or alias name of a channel
      *
-     * @access public
      * @return void
      */
     public function setChannel($channel_name)
@@ -414,7 +400,6 @@ class PEAR_Size
      *
      * @param string $types comma seperated string containing names of types.
      *
-     * @access public
      * @return void
      */
     public function setTypes($types='')
@@ -428,7 +413,6 @@ class PEAR_Size
      *
      * @param array $options options specified (filled by Console_Getopt::getopt)
      *
-     * @access public
      * @return mixed returns a PEAR_Error on failure
      */
     public function parseCLIOptions($options)
@@ -479,7 +463,6 @@ class PEAR_Size
     /**
      * analyse
      *
-     * @access public
      * @return void
      */
     public function analyse()
@@ -531,7 +514,6 @@ class PEAR_Size
     /**
      * generateReport
      *
-     * @access public
      * @return void
      */
     public function generateReport()
@@ -552,14 +534,14 @@ class PEAR_Size
             $this->_driver->display(str_pad('', strlen($channel_name) + 1, "="));
             $msg = "Total: ";
             if ($this->readable) {
-                $msg .= PEAR_Size_sizeReadable($channel_total, null, $this->round);
+                $msg .= $this->_sizeReadable($channel_total, null, $this->round);
             } else {
                 $msg .= $channel_total;
             }
             $this->_driver->display($msg);
 
-            if ($sort_size) {
-                usort($stats, "_sortBySize");
+            if ($this->sort_size) {
+                usort($stats, array("PEAR_Size","_sortBySize"));
             }
             $this->_channelReport($stats, $details);
         }
