@@ -13,7 +13,7 @@
  */
 require_once "HTML/Table.php";
 /**
- * PEAR_Size_HTML_Table
+ * Extended form of HTML_Table
  *
  * @uses    HTML_Table
  * @category Size
@@ -27,7 +27,7 @@ class PEAR_Size_HTML_Table extends HTML_Table
 {
 
     /**
-     * getTable
+     * return table [in HTML]
      *
      * return table - an alias for HTML_Table's toHTML method in an effort to
      * have consistently named methods for components that do similar work.

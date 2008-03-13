@@ -42,9 +42,7 @@ require 'PEAR/Size/Factory.php';
 class PEAR_Size
 {
     /**
-     * _sizeReadable
-     *
-     * determine a more readable form of the given size.
+     * Determine a more readable form of the given size.
      *
      * @param int     $size      size value
      * @param string  $retstring formatting string; null by default.
@@ -81,8 +79,6 @@ class PEAR_Size
         return sprintf($retstring, $size, $sizestring);
     }
     /**
-     * _sortBySize
-     *
      * Used for sorting stats array.
      *
      * @param array $a stats array entry
@@ -101,8 +97,6 @@ class PEAR_Size
     }
 
     /**
-     * _readableLine
-     *
      * Return either given value, or it in readable form depending on criteria.
      *
      * @param integer $value    value
@@ -121,22 +115,10 @@ class PEAR_Size
     }
 
     /**
-     * _analysePackages
+     * Analyse packages associated with specified channel
      *
      * Return stats array (and total size used by all packages inside a
      * specified channel).
-     *
-     * @param array  $packages      array of names of packages to search forr.
-     * @param object $reg           PEAR Registry object.
-     * @param int    $channel_index index value of entry in channels_full array to
-     *                              search for packages
-     *
-     * @return array
-     */
-    /**
-     * _analysePackages
-     *
-     * Analyse packages associated with specified channel
      *
      * @param array  $packages      array of names of packages to search forr.
      * @param object $reg           PEAR Registry object.
@@ -190,8 +172,6 @@ class PEAR_Size
     }
 
     /**
-     * _channelReport
-     *
      * Display report of packages in a channel
      *
      * @param array $stats   array of statistics
@@ -277,7 +257,7 @@ class PEAR_Size
     }
 
     /**
-     * setOutputDriver
+     * set up driver to be used, dependant on specified type.
      *
      * @param string $type name the type of driver (html, text...)
      *
@@ -292,7 +272,7 @@ class PEAR_Size
     }
 
     /**
-     * setVerbose
+     * set verbosity level
      *
      * Should generated data (and the associated report) contain more information?
      *
@@ -306,7 +286,7 @@ class PEAR_Size
     }
 
     /**
-     * setHumanReadable
+     * human readable...
      *
      * Should values be presented in a form more readable to mere mortals?
      *
@@ -320,8 +300,6 @@ class PEAR_Size
     }
 
     /**
-     * setSortSize
-     *
      * Indicate whether results should be sorted by size.
      *
      * @param bool $value defaults to true.
@@ -334,8 +312,6 @@ class PEAR_Size
     }
 
     /**
-     * setAll
-     *
      * Indicate whether all packages in a channel should be analysed.
      *
      * @param bool $value defaults to true.
@@ -360,7 +336,6 @@ class PEAR_Size
     }
 
     /**
-     * setRoundValues
      * Should values be rounded to multiples of 1000?
      *
      * @param bool $value defaults to true
@@ -374,7 +349,7 @@ class PEAR_Size
     }
 
     /**
-     * setChannel
+     * set which channel is to be used
      *
      * @param string $channel_name Either full or alias name of a channel
      *
@@ -409,7 +384,7 @@ class PEAR_Size
     }
 
     /**
-     * parseCLIOptions
+     * parse options determined by Console_Getopt
      *
      * @param array $options options specified (filled by Console_Getopt::getopt)
      *
@@ -461,7 +436,7 @@ class PEAR_Size
     }
 
     /**
-     * analyse
+     * main analysis method
      *
      * @return void
      */
@@ -512,7 +487,7 @@ class PEAR_Size
     }
 
     /**
-     * generateReport
+     * generate the report
      *
      * @return void
      */

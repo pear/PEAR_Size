@@ -36,7 +36,7 @@ interface PEAR_Size_Output_Driver
 class  PEAR_SIZE_OutputFactory implements PEAR_SIZE_Factory
 {
     /**
-     * createInstance
+     * create required instance of the Output 'driver'.
      *
      * @param string $type type of instance required, lowercase.
      *
