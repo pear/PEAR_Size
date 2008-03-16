@@ -4,24 +4,25 @@
  *
  * PHP Version 5
  *
- * @category Size
- * @package  Size
- * @author   Ken Guest <ken@linux.ie>
- * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  CVS: <cvs_id>
- * @link     Size.php
+ * @category  PEAR
+ * @package   PEAR_Size
+ * @author    Ken Guest <ken@linux.ie>
+ * @copyright 2008 Ken Guest
+ * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
+ * @version   CVS: <cvs_id>
+ * @link      http://pear.php.net/package/PEAR_Size
  */
 require_once "HTML/Table.php";
 /**
  * Extended form of HTML_Table
  *
- * @uses    HTML_Table
- * @category Size
- * @package  Size
+ * @category PEAR
+ * @package  PEAR_Size
+ * @uses     HTML_Table
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
- * @link     Size_Output_html.php
+ * @link     http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_HTML_Table extends HTML_Table
 {
@@ -32,7 +33,6 @@ class PEAR_Size_HTML_Table extends HTML_Table
      * return table - an alias for HTML_Table's toHTML method in an effort to
      * have consistently named methods for components that do similar work.
      *
-     * @access public
      * @return void
      */
     public function getTable()
@@ -43,13 +43,13 @@ class PEAR_Size_HTML_Table extends HTML_Table
 /**
  * PEAR_Size_Output_html
  *
- * @uses PEAR_Size_Output_Driver
- * @category Size
- * @package  Size
+ * @category PEAR
+ * @package  PEAR_Size
+ * @uses     PEAR_Size_Output_Driver
  * @author   Ken Guest <ken@linux.ie>
- * @license  GPL (see http://www.gnu.org/licenses/gpl.txt)
+ * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
- * @link     Size_Output_html.php
+ * @link     http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_Output_html implements PEAR_Size_Output_Driver
 {
@@ -58,7 +58,6 @@ class PEAR_Size_Output_html implements PEAR_Size_Output_Driver
      *
      * @param string $text specified text to be displayed
      *
-     * @access public
      * @return void
      */
     public function display($text)
@@ -70,7 +69,6 @@ class PEAR_Size_Output_html implements PEAR_Size_Output_Driver
      *
      * Used for displaying detail lines of the report in tabular format.
      *
-     * @access public
      * @return void
      */
     public function table()

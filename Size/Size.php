@@ -4,12 +4,12 @@
  *
  * PHP Version 5
  *
- * @category Size
- * @package  Size
+ * @category PEAR
+ * @package  PEAR_Size
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
- * @link     Size.php
+ * @link     http://pear.php.net/package/PEAR_Size
  */
 
 /**
@@ -25,11 +25,13 @@ require_once 'PEAR/Config.php';
  * Working with the PEAR registry regarding installed packages
  */
 require_once 'PEAR/Registry.php';
-
-require 'PEAR/Size/Factory.php';
+/**
+ * Use Factory to get instance of output driver
+ */
+require_once 'PEAR/Size/Factory.php';
 
 /**
- * PEAR_Size
+ * PEAR_Size: a class for determining the whole size that a package consumes on disk.
  *
  * @category  PEAR
  * @package   PEAR_Size
@@ -41,6 +43,156 @@ require 'PEAR/Size/Factory.php';
  */
 class PEAR_Size
 {
+
+
+    /**
+     * true if all channels are to be analysed.
+     *
+     * @var bool
+     */
+    private $_all_channels = false;
+
+    /**
+     * true if all packages in set channel are to be analysed.
+     *
+     * @var bool $_all
+     */
+    private $_all = false;
+
+    /**
+     * channel[s] to analyse
+     *
+     * @var array
+     */
+    private $_channel = array();
+
+    /**
+     * array containing the alias name of each channel
+     *
+     * used for identifying channel which can be specified by either fullname
+     * or by alias.
+     *
+     * @var array
+     */
+    private $_channels_alias = array();
+    private $_channels = array(); //not sure this is needed anymore
+
+    /**
+     * array containing full names of all channels
+     *
+     * @var array
+     */
+    private $_channels_full = array();
+
+    /**
+     * PEAR_Config object
+     *
+     * @var $_config
+     */
+    private $_config = null;
+
+    /**
+     * location of default channel in reg_channels array
+     *
+     * @var int
+     * @access protected
+     */
+    private $_default_index = null;
+
+    /**
+     * [report] output driver
+     *
+     * @var PEAR_Size_Output_Driver
+     */
+    private $_driver = null;
+
+    /**
+     * array or PEAR_Error of error messages
+     *
+     * @var array
+     */
+    public $errors = array();
+
+    /**
+     * Overall total filesize consumed by all channels
+     *
+     * @see _analysePackages()
+     *
+     * @var int
+     */
+    private $_grand_total = 0; //set by _analysePackages
+
+    /**
+     * track the longest name
+     *
+     * @var int $_name_length
+     */
+    private $_name_length = 0;
+
+    /**
+     * array of options as typically set by Console_Getopt::getopt
+     *
+     * @var array
+     */
+    private $_options = array();
+
+    /**
+     * present values in a readable form?
+     *
+     * Defaults to false
+     *
+     * @var bool
+     */
+    private $_readable = false;
+
+    /**
+     * list of channels returned by getChannels method.
+     *
+     * @var array $reg_channels
+     */
+    protected $reg_channels = array();
+
+    /**
+     * Registry object
+     *
+     * @var Registry $reg
+     */
+    protected $reg = null;
+
+    /**
+     * if true, round to SI values
+     * @ var bool $_round
+     */
+    private $_round = false;
+
+    /**
+     * List of all valid roles to search for.
+     *
+     * May be extended by child class for cases where pear installer is embedded
+     * and custom roles are in use.
+     *
+     * @var string $search_roles
+     */
+    protected $search_roles = '';
+
+    /**
+     * if true, sort results by size.
+     *
+     * Default to false.
+     *
+     * @var bool $_sort_size
+     */
+    private $_sort_size = false;
+
+    /**
+     * If true, report contains more details re breakdown on a role-by-role basis.
+     *
+     * Default to false
+     *
+     * @var bool $_verbose
+     */
+    private $_verbose = false;
+
     /**
      * Determine a more readable form of the given size.
      *
@@ -136,11 +288,11 @@ class PEAR_Size
         $channel_total = 0;
 
         foreach ($packages as $package) {
-            if (strlen($package) > $this->name_length) {
-                $this->name_length = strlen($package);
+            if (strlen($package) > $this->_name_length) {
+                $this->_name_length = strlen($package);
             }
             $sizes = array('data'=>0, 'doc'=>0, 'script'=>0, 'php'=>0, 'test'=>0);
-            $pkg   = $this->reg->getPackage($package, $this->channels_full[$index]);
+            $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
                 array_push($this->errors, "Package $package not found");
                 continue;
@@ -167,7 +319,7 @@ class PEAR_Size
                         'sizes'=>$sizes));
             $channel_total += $package_total;
         }
-        $this->grand_total += $channel_total;
+        $this->_grand_total += $channel_total;
         return array($stats, $channel_total);
     }
 
@@ -187,15 +339,15 @@ class PEAR_Size
             $content   = array();
             $content[] = $statistic['package'];
             $content[] = $this->_readableLine($statistic['total'],
-                                              $this->readable,
-                                              $this->round);
-            if ($this->verbose) {
+                    $this->_readable,
+                    $this->_round);
+            if ($this->_verbose) {
                 $line = '';
                 foreach ($details as $detail) {
                     $line .= "$detail: ";
                     $line .= $this->_readableLine($statistic['sizes'][$detail],
-                            $this->readable,
-                            $this->round);
+                            $this->_readable,
+                            $this->_round);
                     $line .= "; ";
                 }
                 $line      = substr($line, 0, strlen($line) - 2);
@@ -218,23 +370,22 @@ class PEAR_Size
      */
     public function __construct()
     {
-        $this->config       = PEAR_Config::singleton();
-        $this->reg          = $this->config->getRegistry();
-        $this->channels     = array();
-        $this->all          = false;
-        $this->all_channels = false;
-        $this->verbose      = false;
-        $this->readable     = false;
-        $this->search_roles = '|data|doc|php|script|test|';
-        $this->sort_size    = false;
-        $this->round        = false;
-        $this->channel      = array();
-        $this->errors       = array();
+        $this->_config       = PEAR_Config::singleton();
+        $this->reg           = $this->_config->getRegistry();
+        $this->_channels     = array();
+        $this->_all           = false;
+        $this->_all_channels = false;
+        $this->_verbose      = false;
+        $this->_readable     = false;
+        $this->search_roles  = '|data|doc|php|script|test|';
+        $this->_sort_size    = false;
+        $this->_round        = false;
+        $this->_channel      = array();
+        $this->errors        = array();
 
-        $channels_full      = array();
-        $channels_alias     = array();
-        $channels_specified = array();
-        $default_index      = null;
+        $channels_full  = array();
+        $channels_alias = array();
+        $_default_index = null;
 
         $reg_channels = $this->reg->getChannels();
         $num_channels = sizeof($reg_channels);
@@ -246,13 +397,13 @@ class PEAR_Size
             $channels_full[$i]  = $fullname;
             $channels_alias[$i] = $channel->getAlias();
             if ($fullname == PEAR_CONFIG_DEFAULT_CHANNEL) {
-                $this->default_index = $i;
+                $this->_default_index = $i;
             }
         }
-        $this->channel        = array();
-        $this->channels_full  = $channels_full;
-        $this->channels_alias = $channels_alias;
-        $this->reg_channels   = $reg_channels;
+        $this->_channel        = array();
+        $this->_channels_full  = $channels_full;
+        $this->_channels_alias = $channels_alias;
+        $this->reg_channels    = $reg_channels;
 
     }
 
@@ -282,7 +433,7 @@ class PEAR_Size
      */
     public function setVerbose($value = true)
     {
-        $this->verbose = $value;
+        $this->_verbose = $value;
     }
 
     /**
@@ -296,7 +447,7 @@ class PEAR_Size
      */
     public function setHumanReadable($value = true)
     {
-        $this->readable = $value;
+        $this->_readable = $value;
     }
 
     /**
@@ -308,7 +459,7 @@ class PEAR_Size
      */
     public function setSortSize($value = true)
     {
-        $this->sort_size = $value;
+        $this->_sort_size = $value;
     }
 
     /**
@@ -320,7 +471,7 @@ class PEAR_Size
      */
     public function setAll($value = true)
     {
-        $this->all = $value;
+        $this->_all = $value;
     }
 
     /**
@@ -328,11 +479,17 @@ class PEAR_Size
      *
      * @return void
      */
-    public function setAllChannels()
+    public function setAllChannels($mode = true)
     {
-        $this->all_channels = true;
-        $this->setAll();
-        $this->channel = $this->channels_full;
+        if ($mode) {
+            $this->_all_channels = true;
+            $this->setAll();
+            $this->_channel = $this->channels_full;
+        } else {
+            $this->_all_channels = false;
+            $this->setAll(false);
+            $this->_channel = array();
+        }
     }
 
     /**
@@ -344,7 +501,7 @@ class PEAR_Size
      */
     public function setRoundValues($value = true)
     {
-        $this->round = $value;
+        $this->_round = $value;
 
     }
 
@@ -357,16 +514,19 @@ class PEAR_Size
      */
     public function setChannel($channel_name)
     {
-        $channel_pos = array_search($channel_name, $this->channels_alias);
+        if ($this->_all_channels) {
+            $this->setAllChannels(false);
+        }
+        $channel_pos = array_search($channel_name, $this->_channels_alias);
         if ($channel_pos === false) {
-            $channel_pos = array_search($channel_name, $this->channels_full);
+            $channel_pos = array_search($channel_name, $this->_channels_full);
             if ($channel_pos === false) {
                 array_push($this->errors,
                            "Channel \"$channel_name\" does not exist");
             }
         }
-        if ($channel_pos) {
-            $this->channel[$channel_pos] = $channel_name;
+        if ($channel_pos !== false) {
+            $this->_channel[$channel_pos] = $channel_name;
         }
     }
 
@@ -429,7 +589,7 @@ class PEAR_Size
                 break;
             }
         }
-        $this->options = $options;
+        $this->_options = $options;
         if (count($this->errors)) {
             return PEAR::raiseError($this->errors[0]);
         }
@@ -443,39 +603,39 @@ class PEAR_Size
     public function analyse()
     {
 
-        $this->grand_total = 0;
-        $this->name_length = 0;
+        $this->_grand_total = 0;
+        $this->_name_length = 0;
 
         $this->stats  = array();
         $this->errors = array();
 
-        if (sizeof($this->channel) == 0) {
-            $default_channel =  $this->config->get('default_channel');
+        if (sizeof($this->_channel) == 0) {
+            $default_channel =  $this->_config->get('default_channel');
             //determine position
-            $pos = array_search($default_channel, $this->channels_full);
+            $pos = array_search($default_channel, $this->_channels_full);
             //insert name of default channel into the correct position
             //of the channel array.
-            $this->channel[$pos] =  $default_channel;
+            $this->_channel[$pos] =  $default_channel;
         }
 
-        if (!$this->all) {
-            if (empty($this->options[1]) && !($this->all_channels)) {
+        if (!$this->_all) {
+            if (empty($this->_options[1]) && !($this->_all_channels)) {
                 usage();
                 exit(PEAR_SIZE_INVALID_OPTIONS);
             }
-            foreach ($this->channel as $index=>$given) {
-                $packages  = $this->options[1];
-                $cposition = $this->channels_full[$index];
+            foreach ($this->_channel as $index=>$given) {
+                $packages  = $this->_options[1];
+                $cposition = $this->_channels_full[$index];
                 //analyse
                 $channel_stats[$cposition] = $this->_analysePackages($packages,
                                                                      $this->reg,
                                                                      $index);
             }
         } else {
-            foreach ($this->channel as $index=>$given) {
+            foreach ($this->_channel as $index=>$given) {
                 $chanalias = $this->reg_channels[$index]->getAlias();
                 $packages  = $this->reg->listPackages($chanalias);
-                $cposition = $this->channels_full[$index];
+                $cposition = $this->_channels_full[$index];
                 sort($packages);
                 //analyse
                 $channel_stats[$cposition] = $this->_analysePackages($packages,
@@ -483,7 +643,7 @@ class PEAR_Size
                                                                      $index);
             }
         }
-        $this->channel_stats = $channel_stats;
+        $this->_channel_stats = $channel_stats;
     }
 
     /**
@@ -497,25 +657,25 @@ class PEAR_Size
         $details = explode("|", $indices);
 
         $msg  = "Total: ";
-        $msg .= $this->_readableLine($this->grand_total,
-                $this->readable,
-                $this->round);
+        $msg .= $this->_readableLine($this->_grand_total,
+                $this->_readable,
+                $this->_round);
         $this->_driver->display($msg);
 
-        foreach ($this->channel_stats as $channel_name=>$ca) {
+        foreach ($this->_channel_stats as $channel_name=>$ca) {
             list($stats, $channel_total) = $ca;
             $this->_driver->display("");
             $this->_driver->display("$channel_name:");
             $this->_driver->display(str_pad('', strlen($channel_name) + 1, "="));
             $msg = "Total: ";
-            if ($this->readable) {
-                $msg .= $this->_sizeReadable($channel_total, null, $this->round);
+            if ($this->_readable) {
+                $msg .= $this->_sizeReadable($channel_total, null, $this->_round);
             } else {
                 $msg .= $channel_total;
             }
             $this->_driver->display($msg);
 
-            if ($this->sort_size) {
+            if ($this->_sort_size) {
                 usort($stats, array("PEAR_Size","_sortBySize"));
             }
             $this->_channelReport($stats, $details);

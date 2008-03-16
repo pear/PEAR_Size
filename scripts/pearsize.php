@@ -7,9 +7,9 @@
  *
  * PHP Version 5
  *
- * @category PearSize
- * @package  PearSize
- * @author   Ken Guest <kguest@php.net>
+ * @category PEAR
+ * @package  PEAR_Size
+ * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
  * @link     pearsize.php

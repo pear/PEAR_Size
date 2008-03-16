@@ -4,24 +4,24 @@
  *
  * PHP Version 5
  *
- * @category Size
- * @package  Size
+ * @category PEAR
+ * @package  PEAR_Size
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
- * @link     Size_Output_text.php
+ * @link     http://pear.php.net/package/PEAR_Size
  */
 require_once "Console/Table.php";
 /**
- * PEAR_Size_Output_text
+ * Output info as pure text.
  *
- * @uses iPEAR_Size_Output_Driver
- * @category Size
- * @package  Size
+ * @category PEAR
+ * @package  PEAR_Size
+ * @uses     iPEAR_Size_Output_Driver
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
- * @link     Size.php
+ * @link     http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_Output_text implements PEAR_Size_Output_Driver
 {
@@ -30,7 +30,6 @@ class PEAR_Size_Output_text implements PEAR_Size_Output_Driver
      *
      * @param string $text text to be displayed
      *
-     * @access public
      * @return void
      */
     public function display($text)
@@ -42,7 +41,6 @@ class PEAR_Size_Output_text implements PEAR_Size_Output_Driver
      *
      * Used for displaying detail lines of the report in tabular format.
      *
-     * @access public
      * @return void
      */
     public function table()

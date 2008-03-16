@@ -5,45 +5,81 @@
  *
  * PHP Version 5
  *
- * @category Size_Factory
- * @package  Size_Factory
- * @author   Ken Guest <ken@guest.cx>
+ * @category PEAR
+ * @package  PEAR_Size
+ * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: <cvs_id>
- * @link     Size_Factory.php
+ * @link     http://pear.php.net/package/PEAR_Size
  */
 
-interface PEAR_SIZE_Factory
-{
-    public function createInstance();
-}
-interface PEAR_Size_Output_Driver
-{
-    public function display($text);
-}
 /**
- * PEAR_SIZE_OutputFactory
+ * Factory object must contract to having a createInstance method
  *
- * @category  Size_Factory
- * @package   Size_Factory
- * @uses      PEAR_SIZE_Factory
- * @author    Ken Guest <kguest@php.net>
- * @copyright 1997-2005 The PHP Group
+ * @category  PEAR
+ * @package   PEAR_Size
+ * @author    Ken Guest <ken@linux.ie>
+ * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version   CVS: <cvs_id>
- * @link      Size_Factory.php
+ * @link      http://pear.php.net/package/PEAR_Size
+ */
+interface PEAR_SIZE_Factory
+{
+    /**
+     * create required instance of the Output 'driver'.
+     *
+     * @return object
+     */
+    public function createInstance();
+}
+
+/**
+ * An Output Driver is used to display information/text in a manner
+ * specific to that driver.
+ *
+ * @category  PEAR
+ * @package   PEAR_Size
+ * @author    Ken Guest <ken@linux.ie>
+ * @copyright 2008 Ken Guest
+ * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
+ * @version   CVS: <cvs_id>
+ * @link      http://pear.php.net/package/PEAR_Size
+ */
+interface PEAR_Size_Output_Driver
+{
+    /**
+     * display given text.
+     *
+     * @param string $text text to be displayed
+     *
+     * @return void
+     */
+    public function display($text);
+}
+
+/**
+ * Use Factory pattern to give a output driver object.
+ *
+ * @category  PEAR
+ * @package   PEAR_Size
+ * @uses      PEAR_SIZE_Factory
+ * @author    Ken Guest <ken@linux.ie>
+ * @copyright 2008 Ken Guest
+ * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
+ * @version   CVS: <cvs_id>
+ * @link      http://pear.php.net/package/PEAR_Size
  */
 class  PEAR_SIZE_OutputFactory implements PEAR_SIZE_Factory
 {
     /**
      * create required instance of the Output 'driver'.
      *
-     * @param string $type type of instance required, lowercase.
+     * @param string $type type of instance required, lowercase. 'text' by default.
      *
-     * @access public
      * @return object
      */
-    function createInstance($type = 'text')
+    public function createInstance($type = 'text')
     {
         include "PEAR/Size/Output_". $type . ".php";
         $class = "PEAR_Size_Output_". $type;
