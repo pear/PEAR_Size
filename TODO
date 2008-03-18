@@ -1,0 +1,8 @@
+- include an option to account for dependencies in displayed file sizes; this
+option would only be available/valid if only one 'target' package.
+
+- CSV output driver
+
+- A channel summary view would be nice
+
+- Right alignment of the sizes would be nice
