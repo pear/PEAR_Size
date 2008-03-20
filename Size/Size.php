@@ -75,7 +75,6 @@ class PEAR_Size
      * @var array
      */
     private $_channels_alias = array();
-    private $_channels = array(); //not sure this is needed anymore
 
     /**
      * array containing full names of all channels
@@ -183,6 +182,15 @@ class PEAR_Size
      * @var bool $_sort_size
      */
     private $_sort_size = false;
+
+    /**
+     * if true, don't display report of packages in channel - i.e. stick to summary.
+     *
+     * Default to false.
+     *
+     * @var bool $_summarise
+     */
+    private $_summarise = false;
 
     /**
      * If true, report contains more details re breakdown on a role-by-role basis.
@@ -484,7 +492,7 @@ class PEAR_Size
         if ($mode) {
             $this->_all_channels = true;
             $this->setAll();
-            $this->_channel = $this->channels_full;
+            $this->_channel = $this->_channels_full;
         } else {
             $this->_all_channels = false;
             $this->setAll(false);
@@ -502,7 +510,18 @@ class PEAR_Size
     public function setRoundValues($value = true)
     {
         $this->_round = $value;
+    }
 
+    /**
+     * Should a summary view be displayed rather than the detailed one?
+     *
+     * @param bool $value defaults to true
+     *
+     * @return void
+     */
+    public function setSummarise($value = true)
+    {
+        $this->_summarise = $value;
     }
 
     /**
@@ -515,6 +534,7 @@ class PEAR_Size
     public function setChannel($channel_name)
     {
         if ($this->_all_channels) {
+            echo  "unset all channels!\n\n";
             $this->setAllChannels(false);
         }
         $channel_pos = array_search($channel_name, $this->_channels_alias);
@@ -587,6 +607,9 @@ class PEAR_Size
             case 'S':
                 $this->setSortSize();
                 break;
+            case 'summarise':
+            case 's':
+                $this->setSummarise();
             }
         }
         $this->_options = $options;
@@ -678,7 +701,9 @@ class PEAR_Size
             if ($this->_sort_size) {
                 usort($stats, array("PEAR_Size","_sortBySize"));
             }
-            $this->_channelReport($stats, $details);
+            if (!$this->_summarise) {
+                $this->_channelReport($stats, $details);
+            }
         }
     }
 }

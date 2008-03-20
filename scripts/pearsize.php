@@ -89,6 +89,7 @@ function usage($error = null)
         fputs(STDOUT, "  -t, --type           ");
         fputs(STDOUT, "specify what type of files are required for the report\n");
         fputs(STDOUT, "                       by default all types are assumed\n");
+        fputs(STDOUT, "  -s, --summarise      display channel summary view\n");
         fputs(STDOUT, "  -S                   sort by file size\n");
         fputs(STDOUT, "  -v, --verbose        display more detailed information\n");
         fputs(STDOUT, "      --help           display this help and exit\n");
@@ -119,6 +120,7 @@ function printVersion()
 {
     echo  APP_VERSION, "\n";
 }
+
 if (php_sapi_name() !== 'cli') {
     echo  "cli version of php required.\n";
     exit(NON_CLI);
@@ -136,12 +138,13 @@ $long_options = array(
         'help',
         'human-readable',
         'si',
+        'summarise',
         'type==',
         'verbose',
         'version',
         );
 
-$options = Console_Getopt::getopt($argv, "aAc:hHt:SVv", $long_options);
+$options = Console_Getopt::getopt($argv, "aAc:hHt:SsVv", $long_options);
 
 if (PEAR::isError($options)) {
     usage($options);
