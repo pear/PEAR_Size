@@ -3,6 +3,6 @@ option would only be available/valid if only one 'target' package.
 
 - CSV output driver
 
-- A channel summary view would be nice
-
 - Right alignment of the sizes would be nice
+
+- console output too long. 80 char width would be just right.
