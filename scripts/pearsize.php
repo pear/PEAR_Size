@@ -11,7 +11,7 @@
  * @package  PEAR_Size
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  CVS: <cvs_id>
+ * @version  CVS: $Id$
  * @link     pearsize.php
  *
  * $ pearsize --all

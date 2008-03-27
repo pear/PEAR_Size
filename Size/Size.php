@@ -8,7 +8,7 @@
  * @package  PEAR_Size
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  CVS: <cvs_id>
+ * @version  CVS: $Id$
  * @link     http://pear.php.net/package/PEAR_Size
  */
 
@@ -381,7 +381,7 @@ class PEAR_Size
         $this->_config       = PEAR_Config::singleton();
         $this->reg           = $this->_config->getRegistry();
         $this->_channels     = array();
-        $this->_all           = false;
+        $this->_all          = false;
         $this->_all_channels = false;
         $this->_verbose      = false;
         $this->_readable     = false;
@@ -484,6 +484,8 @@ class PEAR_Size
 
     /**
      * set variables for analysing all channels.
+     *
+     * @param bool $mode defaults to true.
      *
      * @return void
      */
@@ -676,6 +678,11 @@ class PEAR_Size
      */
     public function generateReport()
     {
+        if ($this->_verbose) {
+            $this->_driver->cols = 3;
+        } else {
+            $this->_driver->cols = 2;
+        }
         $indices = substr($this->search_roles, 1, strlen($this->search_roles) - 2);
         $details = explode("|", $indices);
 

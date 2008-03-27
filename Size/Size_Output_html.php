@@ -9,7 +9,7 @@
  * @author    Ken Guest <ken@linux.ie>
  * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version   CVS: <cvs_id>
+ * @version   CVS: $Id$
  * @link      http://pear.php.net/package/PEAR_Size
  */
 require_once "HTML/Table.php";
@@ -21,7 +21,7 @@ require_once "HTML/Table.php";
  * @uses     HTML_Table
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  CVS: <cvs_id>
+ * @version  CVS: $Id$
  * @link     http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_HTML_Table extends HTML_Table
@@ -48,10 +48,10 @@ class PEAR_Size_HTML_Table extends HTML_Table
  * @uses     PEAR_Size_Output_Driver
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  CVS: <cvs_id>
+ * @version  CVS: $Id$
  * @link     http://pear.php.net/package/PEAR_Size
  */
-class PEAR_Size_Output_html implements PEAR_Size_Output_Driver
+class PEAR_Size_Output_Html implements PEAR_Size_Output_Driver
 {
     /**
      * display given text.
