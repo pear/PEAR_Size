@@ -15,8 +15,8 @@
  * @link     pearsize.php
  *
  * $ pearsize --all
- * $ pearsize Validate_IE
- * $ pearsize Validate_IE --type=test,doc
+ * $ pearsize Console_Table
+ * $ pearsize Console_Table --type=test,doc
 */
 /**
  * Neded to parse options on command line
@@ -82,6 +82,8 @@ function usage($error = null)
         fputs(STDOUT, "  -A, --allchannels    ");
         fputs(STDOUT, "list packages from all channels, not just the default one\n");
         fputs(STDOUT, "  -c, --channel        specify which channel\n");
+        fputs(STDOUT, "  -C, --csv            output results in CSV format ");
+        fputs(STDOUT, "(sizes are measured in bytes).\n");
         fputs(STDOUT, "  -h, --human-readable print sizes in human readable ");
         fputs(STDOUT, "format (for example: 492 B 1KB 7MB)\n");
         fputs(STDOUT, "  -H, --si             ");
@@ -104,9 +106,9 @@ function usage($error = null)
 
         fputs(STDOUT, "\nExamples:
               $ {$app} --all
-              $ {$app} Validate_IE
-              $ {$app} -ttest,doc Validate_IE
-              $ {$app} --type=test,doc,php -h Validate_IE Date_Holidays
+              $ {$app} Console_Table
+              $ {$app} -ttest,doc Console_Table
+              $ {$app} --type=test,doc,php -h Console_Table Date_Holidays
               \n");
     }
 }
@@ -135,6 +137,7 @@ $long_options = array(
         'all',
         'allchannels',
         'channel==',
+        'csv',
         'help',
         'human-readable',
         'si',
@@ -144,7 +147,7 @@ $long_options = array(
         'version',
         );
 
-$options = Console_Getopt::getopt($argv, "aAc:hHt:SsVv", $long_options);
+$options = Console_Getopt::getopt($argv, "aAc:ChHt:SsVv", $long_options);
 
 if (PEAR::isError($options)) {
     usage($options);

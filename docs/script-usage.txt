@@ -4,6 +4,7 @@ Display information on how much space an installed PEAR package required.
   -a, --all            display information for all installed packages
   -A, --allchannels    list packages from all channels, not just the default one
   -c, --channel        specify which channel
+  -C, --csv            output results in CSV format (sizes are measured in bytes).
   -h, --human-readable print sizes in human readable format (for example: 492 B 1KB 7MB)
   -H, --si             likewise, but use powers of 1000 not 1024
   -t, --type           specify what type of files are required for the report

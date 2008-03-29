@@ -51,7 +51,7 @@ class PEAR_Size_HTML_Table extends HTML_Table
  * @version  CVS: $Id$
  * @link     http://pear.php.net/package/PEAR_Size
  */
-class PEAR_Size_Output_Html implements PEAR_Size_Output_Driver
+class PEAR_Size_Output_Html extends PEAR_Size_Output_Driver
 {
     /**
      * display given text.

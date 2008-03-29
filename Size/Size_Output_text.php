@@ -17,13 +17,13 @@ require_once "Console/Table.php";
  *
  * @category PEAR
  * @package  PEAR_Size
- * @uses     iPEAR_Size_Output_Driver
+ * @uses     PEAR_Size_Output_Driver
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version  CVS: $Id$
  * @link     http://pear.php.net/package/PEAR_Size
  */
-class PEAR_Size_Output_Text implements PEAR_Size_Output_Driver
+class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver
 {
 
     /**
@@ -102,6 +102,31 @@ class PEAR_Size_Output_Text implements PEAR_Size_Output_Driver
             $tbl->addFilter(2, $filter2);
         }
         return $tbl;
+    }
+    /**
+     * generate the report
+     *
+     * @param array $channel_stats  contains statistics for each channel
+     * @param array $search_roles   roles searched for
+     * @param array $grand_total    entire total of disk space consumed by channel
+     * @param array $display_params parameters relevant to display of report.
+     *
+     * @return void
+     */
+    public function generateReport($channel_stats,
+                                   $search_roles,
+                                   $grand_total,
+                                   $display_params)
+    {
+        if ($display_params["verbose"]) {
+            $this->cols = 3;
+        } else {
+            $this->cols = 2;
+        }
+        parent::generateReport($channel_stats,
+                               $search_roles,
+                               $grand_total,
+                               $display_params);
     }
 }
 ?>

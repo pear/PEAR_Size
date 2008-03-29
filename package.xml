@@ -40,6 +40,7 @@
    </dir>
    <file baseinstalldir="/" name="Size/Size.php" role="php" install-as="PEAR/Size.php"/>
    <file baseinstalldir="/" name="Size/Size_Factory.php" role="php" install-as="PEAR/Size/Factory.php"/>
+   <file baseinstalldir="/" name="Size/Size_Output_csv.php" role="php" install-as="PEAR/Size/Output_csv.php"/>
    <file baseinstalldir="/" name="Size/Size_Output_text.php" role="php" install-as="PEAR/Size/Output_text.php"/>
    <file baseinstalldir="/" name="Size/Size_Output_html.php" role="php" install-as="PEAR/Size/Output_html.php"/>
    <file name="TODO" role="doc" />

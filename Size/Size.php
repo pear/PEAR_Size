@@ -256,23 +256,6 @@ class PEAR_Size
         return ($a_total < $b_total ? -1 : 1);
     }
 
-    /**
-     * Return either given value, or it in readable form depending on criteria.
-     *
-     * @param integer $value    value
-     * @param boolean $readable human readable form?
-     * @param boolean $round    round to values of 1000 rather than 1024?
-     *
-     * @return string
-     */
-    private function _readableLine($value, $readable, $round)
-    {
-        if ($readable) {
-            return $this->_sizeReadable($value, null, $round);
-        } else {
-            return (string) $value;
-        }
-    }
 
     /**
      * Analyse packages associated with specified channel
@@ -329,46 +312,6 @@ class PEAR_Size
         }
         $this->_grand_total += $channel_total;
         return array($stats, $channel_total);
-    }
-
-    /**
-     * Display report of packages in a channel
-     *
-     * @param array $stats   array of statistics
-     * @param mixed $details additional details
-     *
-     * @return void
-     */
-    private function _channelReport($stats, $details)
-    {
-        $table         = $this->_driver->table();
-        $content_added = false;
-        foreach ($stats as $statistic) {
-            $content   = array();
-            $content[] = $statistic['package'];
-            $content[] = $this->_readableLine($statistic['total'],
-                    $this->_readable,
-                    $this->_round);
-            if ($this->_verbose) {
-                $line = '';
-                foreach ($details as $detail) {
-                    $line .= "$detail: ";
-                    $line .= $this->_readableLine($statistic['sizes'][$detail],
-                            $this->_readable,
-                            $this->_round);
-                    $line .= "; ";
-                }
-                $line      = substr($line, 0, strlen($line) - 2);
-                $content[] = "($line)";
-            }
-            if ($content !== array() ) {
-                $table->addRow($content);
-                $content_added = true;
-            }
-        }
-        if ($content_added) {
-            echo $table->getTable();
-        }
     }
 
     /**
@@ -589,6 +532,10 @@ class PEAR_Size
             case 'c':
                 $this->setChannel(trim($param));
                 break;
+            case 'C':
+            case 'csv':
+                $this->setOutputDriver('csv');
+                break;
             case 'type':
             case 't':
                 $this->setTypes($param);
@@ -678,40 +625,14 @@ class PEAR_Size
      */
     public function generateReport()
     {
-        if ($this->_verbose) {
-            $this->_driver->cols = 3;
-        } else {
-            $this->_driver->cols = 2;
-        }
-        $indices = substr($this->search_roles, 1, strlen($this->search_roles) - 2);
-        $details = explode("|", $indices);
+        $display_params = array("verbose" => $this->_verbose,
+                                "readable" => $this->_readable,
+                                "round" => $this->_round);
 
-        $msg  = "Total: ";
-        $msg .= $this->_readableLine($this->_grand_total,
-                $this->_readable,
-                $this->_round);
-        $this->_driver->display($msg);
-
-        foreach ($this->_channel_stats as $channel_name=>$ca) {
-            list($stats, $channel_total) = $ca;
-            $this->_driver->display("");
-            $this->_driver->display("$channel_name:");
-            $this->_driver->display(str_pad('', strlen($channel_name) + 1, "="));
-            $msg = "Total: ";
-            if ($this->_readable) {
-                $msg .= $this->_sizeReadable($channel_total, null, $this->_round);
-            } else {
-                $msg .= $channel_total;
-            }
-            $this->_driver->display($msg);
-
-            if ($this->_sort_size) {
-                usort($stats, array("PEAR_Size","_sortBySize"));
-            }
-            if (!$this->_summarise) {
-                $this->_channelReport($stats, $details);
-            }
-        }
+        $this->_driver->generateReport($this->_channel_stats,
+                                       $this->search_roles,
+                                       $this->_grand_total,
+                                       $display_params);
     }
 }
 ?>
