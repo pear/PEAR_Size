@@ -20,7 +20,7 @@
  * @uses     PEAR_Size_Output_Driver
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  CVS: $Id$
+ * @version  Release: @package_version@
  * @link     http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_Output_CSV extends PEAR_Size_Output_Driver
