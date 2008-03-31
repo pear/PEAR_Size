@@ -10,11 +10,11 @@
   <email>kguest@php.net</email>
   <active>yes</active>
  </lead>
- <date>2008-03-29</date>
- <time>01:20:09</time>
+ <date>2008-03-31</date>
+ <time>23:41:07</time>
  <version>
-  <release>0.1.1</release>
-  <api>0.1.0</api>
+  <release>0.1.2</release>
+  <api>0.1.2</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -22,8 +22,11 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
-* channel summary
-* CSV output
+* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
@@ -110,6 +113,25 @@
  <changelog>
   <release>
    <version>
+    <release>0.1.2</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-03-31</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+   </notes>
+  </release>
+  <release>
+   <version>
     <release>0.1.1</release>
     <api>0.1.0</api>
    </version>
@@ -117,12 +139,13 @@
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-03-29</date>
+   <date>2008-03-31</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>
-* channel summary
-* CSV output
-   </notes>
+   <notes>* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)</notes>
   </release>
   <release>
    <version>
