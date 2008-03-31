@@ -20,7 +20,7 @@ require_once "Console/Table.php";
  * @uses     PEAR_Size_Output_Driver
  * @author   Ken Guest <ken@linux.ie>
  * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version  Release: @package_version@
+ * @version  Release: @PACKAGE_VERSION@
  * @link     http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver

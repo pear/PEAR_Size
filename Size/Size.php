@@ -38,7 +38,7 @@ require_once 'PEAR/Size/Factory.php';
  * @author    Ken Guest <ken@linux.ie>
  * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version   Release: @package_version@
+ * @version   Release: @PACKAGE_VERSION@
  * @link      http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size
@@ -202,43 +202,6 @@ class PEAR_Size
     private $_verbose = false;
 
     /**
-     * Determine a more readable form of the given size.
-     *
-     * @param int     $size      size value
-     * @param string  $retstring formatting string; null by default.
-     * @param boolean $round     round to multiples of 1000? false by default.
-     *
-     * @return string
-     */
-    static function _sizeReadable($size, $retstring = null, $round = false)
-    {
-        //adapted from Public Domain licensed code at
-        //http://aidanlister.com/repos/v/function.size_readable.php
-        $sizes  = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-        $factor = 1024;
-        if ($round) {
-            $factor = 1000;
-        }
-        if ($retstring === null) {
-            $retstring = '%01.2f %s';
-        }
-        $lastsizestring = end($sizes);
-        foreach ($sizes as $sizestring) {
-            if ($size < $factor) {
-                break;
-            }
-            if ($sizestring !== $lastsizestring) {
-                $size /= $factor;
-            }
-        }
-        if ($sizestring === $sizes[0]) {
-            $retstring = '%01d %s';
-        } elseif ($sizestring === 'KB' && $round) {
-            $sizestring = 'kB';
-        }
-        return sprintf($retstring, $size, $sizestring);
-    }
-    /**
      * Used for sorting stats array.
      *
      * @param array $a stats array entry
@@ -282,7 +245,13 @@ class PEAR_Size
             if (strlen($package) > $this->_name_length) {
                 $this->_name_length = strlen($package);
             }
-            $sizes = array('data'=>0, 'doc'=>0, 'script'=>0, 'php'=>0, 'test'=>0);
+            $sizes = array('data'   => 0,
+                           'doc'    => 0,
+                           'src'    => 0,
+                           'script' => 0,
+                           'php'    => 0,
+                           'test'   => 0,
+                           'etc'    => 0);
             $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
                 array_push($this->errors, "Package $package not found");
@@ -328,7 +297,7 @@ class PEAR_Size
         $this->_all_channels = false;
         $this->_verbose      = false;
         $this->_readable     = false;
-        $this->search_roles  = '|data|doc|php|script|test|';
+        $this->search_roles  = '|data|doc|php|script|test|src|ext|';
         $this->_sort_size    = false;
         $this->_round        = false;
         $this->_channel      = array();
@@ -559,6 +528,10 @@ class PEAR_Size
             case 'summarise':
             case 's':
                 $this->setSummarise();
+            case 'X':
+            case 'xml':
+                $this->setOutputDriver('xml');
+                break;
             }
         }
         $this->_options = $options;

@@ -43,11 +43,48 @@ interface PEAR_SIZE_Factory
  * @author    Ken Guest <ken@linux.ie>
  * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version   Release: @package_version@
+ * @version   Release: @PACKAGE_VERSION@
  * @link      http://pear.php.net/package/PEAR_Size
  */
 class PEAR_Size_Output_Driver
 {
+    /**
+     * Determine a more readable form of the given size.
+     *
+     * @param int     $size      size value
+     * @param string  $retstring formatting string; null by default.
+     * @param boolean $round     round to multiples of 1000? false by default.
+     *
+     * @return string
+     */
+    static function _sizeReadable($size, $retstring = null, $round = false)
+    {
+        //adapted from Public Domain licensed code at
+        //http://aidanlister.com/repos/v/function.size_readable.php
+        $sizes  = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        $factor = 1024;
+        if ($round) {
+            $factor = 1000;
+        }
+        if ($retstring === null) {
+            $retstring = '%01.2f %s';
+        }
+        $lastsizestring = end($sizes);
+        foreach ($sizes as $sizestring) {
+            if ($size < $factor) {
+                break;
+            }
+            if ($sizestring !== $lastsizestring) {
+                $size /= $factor;
+            }
+        }
+        if ($sizestring === $sizes[0]) {
+            $retstring = '%01d %s';
+        } elseif ($sizestring === 'KB' && $round) {
+            $sizestring = 'kB';
+        }
+        return sprintf($retstring, $size, $sizestring);
+    }
     /**
      * Return either given value, or it in readable form depending on criteria.
      *
@@ -184,7 +221,7 @@ class PEAR_Size_Output_Driver
  * @author    Ken Guest <ken@linux.ie>
  * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version   Release: @package_version@
+ * @version   Release: @PACKAGE_VERSION@
  * @link      http://pear.php.net/package/PEAR_Size
  */
 class  PEAR_SIZE_OutputFactory implements PEAR_SIZE_Factory

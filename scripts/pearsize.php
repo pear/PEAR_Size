@@ -97,6 +97,7 @@ function usage($error = null)
         fputs(STDOUT, "      --help           display this help and exit\n");
         fputs(STDOUT, "  -V, --version        ");
         fputs(STDOUT, "output version information and exit\n");
+        fputs(STDOUT, "  -X, --xml            output results in XML format\n");
 
         fputs(STDOUT, "\nTypes:\n");
         fputs(STDOUT, "You can specify a subset of roles/file-types to be ");
@@ -145,9 +146,10 @@ $long_options = array(
         'type==',
         'verbose',
         'version',
+        'xml',
         );
 
-$options = Console_Getopt::getopt($argv, "aAc:ChHt:SsVv", $long_options);
+$options = Console_Getopt::getopt($argv, "aAc:ChHt:SsVvX", $long_options);
 
 if (PEAR::isError($options)) {
     usage($options);
