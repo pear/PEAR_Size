@@ -25,6 +25,12 @@ require_once 'PEAR/Config.php';
  * Working with the PEAR registry regarding installed packages
  */
 require_once 'PEAR/Registry.php';
+
+/**
+ * Exceptions
+ */
+require_once 'PEAR/Size/Exception.php';
+
 /**
  * Use Factory to get instance of output driver
  */
@@ -65,6 +71,13 @@ class PEAR_Size
      * @var array
      */
     private $_channel = array();
+
+    /**
+     * results of analysis.
+     *
+     * @var array
+     */
+    private $_channel_stats = null;
 
     /**
      * array containing the alias name of each channel
@@ -254,7 +267,7 @@ class PEAR_Size
                            'etc'    => 0);
             $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
-                array_push($this->errors, "Package $package not found");
+                array_push($this->errors, "Package \"$package\" not found");
                 continue;
             }
             $version  = $pkg->getVersion();
@@ -448,7 +461,6 @@ class PEAR_Size
     public function setChannel($channel_name)
     {
         if ($this->_all_channels) {
-            echo  "unset all channels!\n\n";
             $this->setAllChannels(false);
         }
         $channel_pos = array_search($channel_name, $this->_channels_alias);
@@ -486,6 +498,10 @@ class PEAR_Size
      */
     public function parseCLIOptions($options)
     {
+        if (sizeof($options) != 2) {
+            $msg = "Options array wrong size - must be a two element array.";
+            throw new PEAR_Size_Exception($msg);
+        }
         foreach ($options[0] as $opt) {
             $argument = str_replace('-', '', $opt[0]);
             $param    = $opt[1];
@@ -536,7 +552,7 @@ class PEAR_Size
         }
         $this->_options = $options;
         if (count($this->errors)) {
-            return PEAR::raiseError($this->errors[0]);
+            throw new PEAR_Size_Exception($this->errors[0]);
         }
     }
 
@@ -602,6 +618,12 @@ class PEAR_Size
                                 "readable" => $this->_readable,
                                 "round" => $this->_round);
 
+        if (is_null($this->_driver)) {
+            throw new PEAR_Size_Exception("Output driver not set.");
+        }
+        if (is_null($this->_channel_stats)) {
+            throw new PEAR_Size_Exception("Channel Data not defined.");
+        }
         $this->_driver->generateReport($this->_channel_stats,
                                        $this->search_roles,
                                        $this->_grand_total,

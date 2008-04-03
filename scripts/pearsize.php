@@ -173,16 +173,18 @@ foreach ($options[0] as $opt) {
         exit(0);
     }
 }
-$ret = $pearsize->parseCLIOptions($options);
-if (PEAR::isError($ret)) {
-    usage($ret);
+try {
+    $pearsize->parseCLIOptions($options);
+    $pearsize->analyse();
+    $errors = $pearsize->errors;
+    if (sizeof($errors) > 0) {
+        usage($errors);
+        exit(1);
+    }
+    $pearsize->generateReport();
+}
+catch (PEAR_Size_Exception $e) {
+    usage($e->getMessage());
     exit(1);
 }
-$pearsize->analyse();
-$errors = $pearsize->errors;
-if (sizeof($errors) > 0) {
-    usage($errors);
-    exit(1);
-}
-$pearsize->generateReport();
 ?>
