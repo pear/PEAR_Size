@@ -581,8 +581,7 @@ class PEAR_Size
 
         if (!$this->_all) {
             if (empty($this->_options[1]) && !($this->_all_channels)) {
-                usage();
-                exit(PEAR_SIZE_INVALID_OPTIONS);
+                throw new PEAR_Size_Exception('usage');
             }
             foreach ($this->_channel as $index=>$given) {
                 $packages  = $this->_options[1];

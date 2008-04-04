@@ -51,6 +51,9 @@
     <file baseinstalldir="/" install-as="PEAR/Size.php" name="Size.php" role="php">
      <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
     </file>
+    <file baseinstalldir="/" install-as="PEAR/Size/CLI.php" name="Size_CLI.php" role="php">
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
     <file baseinstalldir="/" install-as="PEAR/Size/Exception.php" name="Size_Exception.php" role="php">
      <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
     </file>
