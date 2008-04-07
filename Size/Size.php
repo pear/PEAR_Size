@@ -260,11 +260,11 @@ class PEAR_Size
             }
             $sizes = array('data'   => 0,
                            'doc'    => 0,
-                           'src'    => 0,
-                           'script' => 0,
+                           'ext'    => 0,
                            'php'    => 0,
-                           'test'   => 0,
-                           'etc'    => 0);
+                           'script' => 0,
+                           'src'    => 0,
+                           'test'   => 0);
             $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
                 array_push($this->errors, "Package \"$package\" not found");
@@ -310,7 +310,7 @@ class PEAR_Size
         $this->_all_channels = false;
         $this->_verbose      = false;
         $this->_readable     = false;
-        $this->search_roles  = '|data|doc|php|script|test|src|ext|';
+        $this->search_roles  = '|data|doc|ext|php|script|src|test|';
         $this->_sort_size    = false;
         $this->_round        = false;
         $this->_channel      = array();
@@ -503,7 +503,7 @@ class PEAR_Size
             throw new PEAR_Size_Exception($msg);
         }
         foreach ($options[0] as $opt) {
-            $argument = str_replace('-', '', $opt[0]);
+            $argument = preg_replace("/^--/", '', $opt[0]);
             $param    = $opt[1];
             switch ($argument) {
             case 'all':

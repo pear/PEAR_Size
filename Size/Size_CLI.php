@@ -46,6 +46,8 @@ class PEAR_Size_CLI
      */
     const APP_VERSION = "@PACKAGE_VERSION@";
 
+    var $_appName = null;
+
     /**
     * return name of app/script using this class.
     *
@@ -54,9 +56,26 @@ class PEAR_Size_CLI
     */
     public function appName()
     {
-        return basename($_SERVER['PHP_SELF']);
+        if ($this->_appName === null) {
+            $name = basename($_SERVER['PHP_SELF']);
+            return $name;
+        } else {
+            return $this->_appName;
+        }
     }
 
+    /**
+     * set application name (used by plugins to PEAR etc)
+     *
+     * @param string $name application name
+     *
+     * @access public
+     * @return void
+     */
+    public function setAppName($name)
+    {
+        $this->_appName = $name;
+    }
     /**
     * usage
     *
@@ -143,7 +162,7 @@ class PEAR_Size_CLI
     {
         if (php_sapi_name() !== 'cli') {
             echo  "cli version of php required.\n";
-            return PEAR_SIZE_NON_CLI;
+            return self::PEAR_SIZE_NON_CLI;
         }
 
         $pearsize = new PEAR_Size();
@@ -174,11 +193,11 @@ class PEAR_Size_CLI
 
         if (PEAR::isError($options)) {
             self::usage($options);
-            return PEAR_SIZE_INVALID_OPTIONS;
+            return self::PEAR_SIZE_INVALID_OPTIONS;
         }
         if (empty($options[0]) && empty($options[1])) {
             self::usage();
-            return PEAR_SIZE_INVALID_OPTIONS;
+            return self::PEAR_SIZE_INVALID_OPTIONS;
         }
 
         ini_set('max_execution_time', 0);

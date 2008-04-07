@@ -47,6 +47,14 @@
      <tasks:unixeol />
     </file>
    </dir> <!-- /scripts -->
+   <dir name="Command">
+    <file baseinstalldir="/" install-as="PEAR/Command/Size.php" name="Size.php" role="php">
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="/" install-as="PEAR/Command/Size.xml" name="Size.xml" role="php">
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /Command -->
    <dir name="Size">
     <file baseinstalldir="/" install-as="PEAR/Size.php" name="Size.php" role="php">
      <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
