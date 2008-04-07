@@ -615,6 +615,8 @@ class PEAR_Size
     {
         $display_params = array("verbose" => $this->_verbose,
                                 "readable" => $this->_readable,
+                                "sort_size" => $this->_sort_size,
+                                "summarise" => $this->_summarise,
                                 "round" => $this->_round);
 
         if (is_null($this->_driver)) {

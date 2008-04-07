@@ -131,12 +131,14 @@ class PEAR_Size_Output_Driver
                                    $display_params)
     {
 
-        $indices = substr($this->search_roles, 1, strlen($this->search_roles) - 2);
+        $indices = substr($search_roles, 1, strlen($search_roles) - 2);
         $details = explode("|", $indices);
 
-        $this->_verbose  = $display_params["verbose"];
-        $this->_readable = $display_params["readable"];
-        $this->_round    = $display_params["round"];
+        $this->_verbose   = $display_params["verbose"];
+        $this->_readable  = $display_params["readable"];
+        $this->_round     = $display_params["round"];
+        $this->_summarise = $display_params["summarise"];
+        $this->_sort_size = $display_params["sort_size"];
 
         //$stats, $details
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
