@@ -22,11 +22,13 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
-* request: channel summary
-* request: CSV output
-* request: XML output
-* request: console/text output is neater
 * bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+* request: #13441 - console/text output is neater
+* request: #13442 - channel summary
+* request: #13527 - CSV output
+* request: #13550 - XML output
+* request: #13572 - move cli processing intelligence from PEAR_Size to separate class
+* request: #13573 - integration with pear command
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
