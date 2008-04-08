@@ -57,17 +57,20 @@ class PEAR_Command_Size extends PEAR_Command_Common
                     "doc"      => "display information for all installed packages"),
                 "allchannels"  => array(
                     "shortopt" => "A",
-                    "doc"      => "list packages from all channels, not just the default one"),
+                    "doc"      => "list packages from all channels, "
+                                . "not just the default one"),
                 "human-readable" => array (
                     "shortopt" => "h",
-                    "doc"      => "print sizes in human readable format (for example: 492 B 1KB 7MB)"),
+                    "doc"      => "print sizes in human readable format "
+                                . "(for example: 492 B 1KB 7MB)"),
                 "channel"      => array (
                     "shortopt" => "c",
                     "arg"      => "CHANNEL",
                     "doc"      => "specify which channel"),
                 "csv"          => array(
                     "shortopt" => "C",
-                    "doc"      => "output results in CSV format (sizes are measured in bytes)."),
+                    "doc"      => "output results in CSV format (sizes are "
+                                . "measured in bytes)."),
                 "si"           => array(
                     "shortopt" => "H",
                     "doc"      => "likewise, but use powers of 1000 not 1024"),
@@ -86,19 +89,31 @@ class PEAR_Command_Size extends PEAR_Command_Common
                 "type" => array(
                     "shortopt" => "t",
                     "arg"      => "TYPES",
-                    "doc"      => "specify what type of files are required for the report"),
+                    "doc"      => "specify what type of files are required "
+                                . "for the report"),
                     ),
 
                               ));
+
+    /**
+     * doSize
+     *
+     * @param mixed $command instance of command object
+     * @param mixed $options the command options
+     * @param mixed $params  the command parameters (for the options)
+     *
+     * @access public
+     * @return void
+     */
     function doSize($command, $options, $params)
     {
 
         $altered = array();
-        foreach($options as $option=>$value) {
+        foreach ($options as $option=>$value) {
             $altered[] = array($option, $value);
 
         }
-        $ar = array($altered, $params);
+        $ar  = array($altered, $params);
         $cli = new PEAR_Size_CLI;
         $cli->setAppName('pear size');
         return ($cli->run($ar));

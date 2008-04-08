@@ -1,23 +1,40 @@
 <?php
+/**
+ * PEAR_Size
+ *
+ * PHP Version 5
+ *
+ * @category PEAR
+ * @package  PEAR_Size
+ * @author   Ken Guest <ken@linux.ie>
+ * @license  LGPL (see http://www.gnu.org/licenses/lgpl.html)
+ * @version  CVS: $Id$
+ * @link     http://pear.php.net/package/PEAR_Size
+ */
+
+/**
+ * update package.xml automagically
+ */
 require_once 'PEAR/PackageFileManager2.php';
 
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
 $notes = "
-* foobar:  bing bong
+* request: integration with pear command
 * request: channel summary
 * request: CSV output
 * request: XML output
 * request: console/text output is neater
 * bug fix: #13549 - all PEAR roles are supported (including 'ext' and 'src')
 ";
-$version         = '0.1.2';
-$api_version     = '0.1.2';
-$stability       = 'alpha';
-$api_stability   = 'alpha';
+
+$version       = '0.1.2';
+$api_version   = '0.1.2';
+$stability     = 'alpha';
+$api_stability = 'alpha';
 
 
-$packagedir = dirname(__FILE__);
+$packagedir  = dirname(__FILE__);
 $packagefile = '../package.xml';
 
 $options = array(
@@ -38,6 +55,7 @@ $options = array(
     'changelogoldtonew' => false,
     'ignore' => array(__FILE__),
     );
+//import specified options
 $p2 = PEAR_PackageFileManager2::importOptions($packagefile, $options);
 $p2->setReleaseVersion($version);
 $p2->setReleaseStability($stability);
@@ -53,3 +71,6 @@ if (isset($_GET['make'])
     $p2->debugPackageFile();
 }
 ?>
+/**
+ *
+ */
