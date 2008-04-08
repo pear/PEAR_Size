@@ -214,24 +214,6 @@ class PEAR_Size
      */
     private $_verbose = false;
 
-    /**
-     * Used for sorting stats array.
-     *
-     * @param array $a stats array entry
-     * @param array $b stats array entry
-     *
-     * @return int -1 if total in $a is less than $b, else 1.
-     */
-    private function _sortBySize($a, $b)
-    {
-        $a_total = $a['total'];
-        $b_total = $b['total'];
-        if ($a_total === $b_total) {
-            return 0;
-        }
-        return ($a_total < $b_total ? -1 : 1);
-    }
-
 
     /**
      * Analyse packages associated with specified channel

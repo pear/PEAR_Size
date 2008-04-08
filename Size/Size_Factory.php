@@ -49,6 +49,24 @@ interface PEAR_SIZE_Factory
 class PEAR_Size_Output_Driver
 {
     /**
+     * Used for sorting stats array.
+     *
+     * @param array $a stats array entry
+     * @param array $b stats array entry
+     *
+     * @return int -1 if total in $a is less than $b, else 1.
+     */
+    private function _sortBySize($a, $b)
+    {
+        $a_total = $a['total'];
+        $b_total = $b['total'];
+        if ($a_total === $b_total) {
+            return 0;
+        }
+        return ($a_total < $b_total ? -1 : 1);
+    }
+
+    /**
      * Determine a more readable form of the given size.
      *
      * @param int     $size      size value
@@ -164,7 +182,7 @@ class PEAR_Size_Output_Driver
             $this->display($msg);
 
             if ($this->_sort_size) {
-                usort($stats, array("PEAR_Size","_sortBySize"));
+                usort($stats, array("PEAR_Size_Output_Driver","_sortBySize"));
             }
             if (!$this->_summarise) {
                 $this->_channelReport($stats, $details);
