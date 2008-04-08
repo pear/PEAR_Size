@@ -124,7 +124,7 @@ class PEAR_Size_CLI
             fputs(STDOUT, "                       by default all ");
             fputs(STDOUT, "types are assumed\n");
             fputs(STDOUT, "  -s, --summarise      display channel summary view\n");
-            fputs(STDOUT, "  -S                   sort by file size\n");
+            fputs(STDOUT, "  -S, --fsort          sort by file size\n");
             fputs(STDOUT, "  -v, --verbose        ");
             fputs(STDOUT, "display more detailed information\n");
             fputs(STDOUT, "      --help           display this help and exit\n");
@@ -178,6 +178,7 @@ class PEAR_Size_CLI
                     'csv',
                     'help',
                     'human-readable',
+                    'fsort',
                     'si',
                     'summarise',
                     'type==',

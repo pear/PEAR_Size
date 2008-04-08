@@ -538,12 +538,14 @@ class PEAR_Size
             case 'v':
                 $this->setVerbose();
                 break;
+            case 'fsort':
             case 'S':
                 $this->setSortSize();
                 break;
             case 'summarise':
             case 's':
                 $this->setSummarise();
+                break;
             case 'X':
             case 'xml':
                 $this->setOutputDriver('xml');

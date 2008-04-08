@@ -58,9 +58,6 @@ class PEAR_Command_Size extends PEAR_Command_Common
                 "allchannels"  => array(
                     "shortopt" => "A",
                     "doc"      => "list packages from all channels, not just the default one"),
-                "human-readable" => array (
-                    "shortopt" => "h",
-                    "doc"      => "print sizes in human readable format (for example: 492 B 1KB 7MB)"),
                 "channel"      => array (
                     "shortopt" => "c",
                     "arg"      => "CHANNEL",
@@ -68,9 +65,16 @@ class PEAR_Command_Size extends PEAR_Command_Common
                 "csv"          => array(
                     "shortopt" => "C",
                     "doc"      => "output results in CSV format (sizes are measured in bytes)."),
+                "human-readable" => array (
+                    "shortopt" => "h",
+                    "doc"      => "print sizes in human readable format (for example: 492 B 1KB 7MB)"),
                 "si"           => array(
                     "shortopt" => "H",
                     "doc"      => "likewise, but use powers of 1000 not 1024"),
+                "type" => array(
+                    "shortopt" => "t",
+                    "arg"      => "TYPES",
+                    "doc"      => "specify what type of files are required for the report"),
                 "summarise"    => array(
                     "shortopt" => "s",
                     "doc"      => "display channel summary view"),
@@ -83,10 +87,6 @@ class PEAR_Command_Size extends PEAR_Command_Common
                 "version" => array(
                     "shortopt" => "V",
                     "doc"      => "output version information and exit"),
-                "type" => array(
-                    "shortopt" => "t",
-                    "arg"      => "TYPES",
-                    "doc"      => "specify what type of files are required for the report"),
                     ),
 
                               ));

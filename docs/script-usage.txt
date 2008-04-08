@@ -10,7 +10,7 @@ Display information on how much space an installed PEAR package required.
   -t, --type           specify what type of files are required for the report
                        by default all types are assumed
   -s, --summarise      display channel summary view
-  -S                   sort by file size
+  -S, --fsort          sort by file size
   -v, --verbose        display more detailed information
       --help           display this help and exit
   -V, --version        output version information and exit

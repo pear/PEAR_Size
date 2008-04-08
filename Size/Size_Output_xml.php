@@ -42,7 +42,6 @@ class PEAR_Size_Output_XML extends PEAR_Size_Output_Driver
     {
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
         $details = explode("|", $indices);
-        echo "channel,package,total,", str_replace("|", ",", $indices), "\n";
         echo '<?xml version="1.0" encoding="UTF-8"?>', "\n";
         echo '<pear_size version="@PACKAGE_VERSION@">', "\n";
 
