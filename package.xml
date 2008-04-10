@@ -3,7 +3,7 @@
  <name>PEAR_Size</name>
  <channel>pear.php.net</channel>
  <summary>Determine and list how much filespace each installed package consumes.</summary>
- <description>A commandline tool modeled on &apos;df&apos; that lists how much filespace each installed package consumes. A subset of packages can be specified as can channels.</description>
+ <description>A commandline tool modeled on the Unix &apos;df&apos; tool. This lists how much filespace each installed package consumes. A subset of packages can be specified as can channels.</description>
  <lead>
   <name>Ken Guest</name>
   <user>kguest</user>
