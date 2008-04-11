@@ -46,6 +46,10 @@ class PEAR_Size_CLI
      */
     const APP_VERSION = "@PACKAGE_VERSION@";
 
+
+    /**
+     * application name
+     */
     var $_appName = null;
 
     /**
@@ -94,6 +98,7 @@ class PEAR_Size_CLI
 
         if (PEAR::isError($error)) {
             fputs(STDERR, $error->getMessage() . "\n");
+            fputs(STDERR, "\n");
         } elseif (($error !== null) && ($error !== 'usage')) {
             if (is_array($error)) {
                 foreach ($error as $message) {
@@ -102,6 +107,7 @@ class PEAR_Size_CLI
             } else {
                 fputs(STDERR, "$error\n");
             }
+            fputs(STDERR, "\n");
         } elseif (($error === null ) || ($error == 'usage')) {
             fputs(STDOUT, "Usage: {$app} [OPTIONS] [PACKAGE]\n");
             fputs(STDOUT, "Display information on how much space an installed ");
@@ -217,10 +223,14 @@ class PEAR_Size_CLI
         try {
             $pearsize->parseCLIOptions($options);
             $pearsize->analyse();
-            $errors = $pearsize->errors;
-            if (sizeof($errors) > 0) {
-                self::usage($errors);
-                return 1;
+            $errors   = $pearsize->errors;
+            $warnings = $pearsize->warnings;
+            if ((sizeof($errors) > 0) || (sizeof($warnings) > 0)) {
+                $merged = array_merge($errors, $warnings);
+                self::usage($merged);
+                if (sizeof($errors) > 0) {
+                    return 1;
+                }
             }
             $pearsize->generateReport();
         }

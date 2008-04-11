@@ -126,6 +126,14 @@ class PEAR_Size
     public $errors = array();
 
     /**
+     * array of warning messages.
+     *
+     * @var array
+     * @access public
+     */
+    public $warnings = array();
+
+    /**
      * Overall total filesize consumed by all channels
      *
      * @see _analysePackages()
@@ -249,7 +257,7 @@ class PEAR_Size
                            'test'   => 0);
             $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
-                array_push($this->errors, "Package \"$package\" not found");
+                array_push($this->warnings, "Package \"$package\" not found");
                 continue;
             }
             $version  = $pkg->getVersion();
