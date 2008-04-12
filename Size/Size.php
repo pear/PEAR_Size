@@ -562,6 +562,13 @@ class PEAR_Size
         $this->stats  = array();
         $this->errors = array();
 
+        $mixed = false;
+        foreach ($this->_options[1] as $name) {
+            if (strpos($name, "/") !== false) {
+                $mixed = true;
+            }
+        }
+
         if (sizeof($this->_channel) == 0) {
             $default_channel =  $this->_config->get('default_channel');
             //determine position
@@ -571,7 +578,35 @@ class PEAR_Size
             $this->_channel[$pos] =  $default_channel;
         }
 
-        if (!$this->_all) {
+        if ($mixed) {
+            // if at least one package is specified in mixed
+            // form (channel/package) then iterate through all of them, etc etc.
+            $search_for = array();
+            foreach ($this->_options[1] as $name) {
+                if (false === strpos($name, "/")) {
+                    //if no channel is specified in this
+                    //form, assume the default
+                    $package = $name;
+                    $channel = $default_channel;
+                } else {
+                    $temp    = explode("/", $name);
+                    $channel = $temp[0];
+                    $package = $temp[1];
+                    $pos     = array_search($channel, $this->_channels_alias);
+                    if (false !== $pos) {
+                        $channel = $this->_channels_full[$pos];
+                    }
+                }
+                $search_for[$channel][] = $package;
+            }
+            foreach ($search_for as $channel=>$packages) {
+                $index = array_search($channel, $this->_channels_full);
+                //analyse
+                $channel_stats[$channel] = $this->_analysePackages($packages,
+                                                                   $this->reg,
+                                                                   $index);
+            }
+        } elseif (!$this->_all) {
             if (empty($this->_options[1]) && !($this->_all_channels)) {
                 throw new PEAR_Size_Exception('usage');
             }
