@@ -143,7 +143,7 @@ class PEAR_Size_CLI
             fputs(STDOUT, "listed in the report.\n");
             fputs(STDOUT, "These roles are those as supported ");
             fputs(STDOUT, "by the PEAR installer.\n");
-            fputs(STDOUT, "These are: data, doc, php, script, test\n");
+            fputs(STDOUT, "These are: data, doc, ext, php, script, src, test\n");
 
             fputs(STDOUT, "\nExamples:
                 $ {$app} --all
