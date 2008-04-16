@@ -50,7 +50,7 @@ class PEAR_Command_Size extends PEAR_Command_Common
         'size' => array(
             'summary'  => "Information on how much space a package requires.",
             "function" => "doSize",
-            "shortcut" => "s",
+            "shortcut" => "sz",
             "options"  => array(
                 "all"          => array(
                     "shortopt" => "a",
