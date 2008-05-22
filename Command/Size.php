@@ -87,12 +87,13 @@ class PEAR_Command_Size extends PEAR_Command_Common
                 "version" => array(
                     "shortopt" => "V",
                     "doc"      => "output version information and exit"),
-                    ),
                 "xml"          => array(
                     "shortopt" => "X",
                     "doc"      => "output results in XML format"),
 
-                              ));
+	),
+	'doc' => '[PACKAGE ...]
+Display information on how much space an installed PEAR package requires.'));
 
     /**
      * doSize
