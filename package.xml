@@ -10,10 +10,10 @@
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2008-05-17</date>
- <time>19:23:20</time>
+ <date>2008-05-25</date>
+ <time>01:42:32</time>
  <version>
-  <release>0.1.3</release>
+  <release>0.1.4</release>
   <api>0.1.2</api>
  </version>
  <stability>
@@ -22,16 +22,7 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
- * Fix Bug #13619: XML output - pear size -X PEAR_Size doesn&apos;t work [kguest]
- * Fix Bug #13620: sort by file size doesn&apos;t work [kguest]
- * Fix Bug #13630: xml output contains header lines from CSV driver [kguest]
- * Fix Bug #13647: package description should identify what &apos;df&apos; is [kguest]
- * Fix Bug #13655: Wrong behaviour when specified package not found [kguest]
- * Fix Bug #13660: Size.xml is incomplete [kguest]
- * Fix Bug #13663: usage doesn&apos;t list all supported types [kguest]
- * Fix Bug #13709: Some form of end-user documentation is required. [kguest]
- * Fix Bug #13907: output format is always xml [kguest]
- * Implement Feature #13618: pear size $channel/$package does not work [kguest]
+ * Fix Bug #13924: Console_Getopt: unrecognized option [kguest]
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
@@ -130,6 +121,28 @@
   </filelist>
  </phprelease>
  <changelog>
+  <release>
+   <version>
+    <release>0.1.4</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-05-17</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>* Fix Bug #13619: XML output - pear size -X PEAR_Size doesn&apos;t work [kguest]
+* Fix Bug #13620: sort by file size doesn&apos;t work [kguest]
+* Fix Bug #13630: xml output contains header lines from CSV driver [kguest]
+* Fix Bug #13647: package description should identify what &apos;df&apos; is [kguest]
+* Fix Bug #13655: Wrong behaviour when specified package not found [kguest]
+* Fix Bug #13660: Size.xml is incomplete [kguest]
+* Fix Bug #13663: usage doesn&apos;t list all supported types [kguest]
+* Fix Bug #13709: Some form of end-user documentation is required. [kguest]
+* Fix Bug #13907: output format is always xml [kguest]
+* Implement Feature #13618: pear size $channel/$package does not work [kguest]</notes>
+  </release>
   <release>
    <version>
     <release>0.1.3</release>
