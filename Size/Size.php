@@ -229,7 +229,7 @@ class PEAR_Size
      * Return stats array (and total size used by all packages inside a
      * specified channel).
      *
-     * @param array  $packages      array of names of packages to search forr.
+     * @param array  $packages      array of names of packages to search for.
      * @param object $reg           PEAR Registry object.
      * @param int    $channel_index index value of entry in channels_full array to
      *                              search for packages
@@ -652,10 +652,12 @@ class PEAR_Size
         if (is_null($this->_channel_stats)) {
             throw new PEAR_Size_Exception("Channel Data not defined.");
         }
-        $this->_driver->generateReport($this->_channel_stats,
-                                       $this->search_roles,
-                                       $this->_grand_total,
-                                       $display_params);
+        if ($this->_grand_total != 0) {
+            $this->_driver->generateReport($this->_channel_stats,
+                                           $this->search_roles,
+                                           $this->_grand_total,
+                                           $display_params);
+        }
     }
 }
 ?>
