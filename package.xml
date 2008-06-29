@@ -77,6 +77,17 @@
      <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
     </file>
    </dir> <!-- /Size -->
+   <dir name="tests">
+    <file name="AllTests.php" role="test" />
+    <file name="PEAR_Size_TestSuite_CLI.php" role="test">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file> 
+    <file name="PEAR_Size_TestSuite_Standard.php" role="test" />
+   </dir> <!-- /tests -->
    <file baseinstalldir="PEAR" name="TODO" role="doc" />
   </dir> <!-- / -->
  </contents>
