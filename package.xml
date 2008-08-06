@@ -10,10 +10,10 @@
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2008-05-25</date>
- <time>01:42:32</time>
+ <date>2008-08-07</date>
+ <time>00:30:32</time>
  <version>
-  <release>0.1.4</release>
+  <release>0.1.5</release>
   <api>0.1.2</api>
  </version>
  <stability>
@@ -22,7 +22,7 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
- * Fix Bug #13924: Console_Getopt: unrecognized option [kguest]
+ * Fix Bug #14464: fatal error occurs if Output driver is set incorrectly
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
@@ -132,6 +132,19 @@
   </filelist>
  </phprelease>
  <changelog>
+  <release>
+   <version>
+    <release>0.1.5</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-08-07</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>* Fix Bug #14464: fatal error occurs if Output driver is set incorrectly</notes>
+   </release>
   <release>
    <version>
     <release>0.1.4</release>
