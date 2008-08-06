@@ -149,8 +149,7 @@ class PEAR_Size_CLI
                 $ {$app} --all
                 $ {$app} Console_Table
                 $ {$app} -ttest,doc Console_Table
-                $ {$app} --type=test,doc,php -h Console_Table Date_Holidays
-                \n");
+                $ {$app} --type=test,doc,php -h Console_Table Date_Holidays\n");
         }
     }
 
