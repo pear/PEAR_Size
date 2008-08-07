@@ -249,12 +249,12 @@ class PEAR_Size
                 $this->_name_length = strlen($package);
             }
             $sizes = array('data'   => 0,
-                           'doc'    => 0,
-                           'ext'    => 0,
-                           'php'    => 0,
-                           'script' => 0,
-                           'src'    => 0,
-                           'test'   => 0);
+                    'doc'    => 0,
+                    'ext'    => 0,
+                    'php'    => 0,
+                    'script' => 0,
+                    'src'    => 0,
+                    'test'   => 0);
             $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
                 array_push($this->warnings, "Package \"$package\" not found");
@@ -271,10 +271,24 @@ class PEAR_Size
                 if (strpos($this->search_roles, $srole) !== false) {
                     $installed_location = $file['installed_as'];
 
-                    $fsize = filesize($installed_location);
+                    if (!file_exists(  $installed_location)) {
+                        $dn = explode("/",  $installed_location);
+                        if ($dn[0] == 'debian') {
+                            array_shift($dn);
+                            array_shift($dn);
+                            $installed_location = "/" . implode($dn, "/");
+                            unset($dn);
+                        }
+                    }
+                    if (file_exists($installed_location)) {
+                        $fsize = filesize($installed_location);
 
-                    $sizes[$role]  += $fsize;
-                    $package_total += $fsize;
+                        $sizes[$role]  += $fsize;
+                        $package_total += $fsize;
+                    } else {
+                        array_push($this->warnings,
+                                "File \"$installed_location\" does not exist");
+                    }
                 }
             }
             array_push($stats, array('package'=>$pkg->getName(),
