@@ -11,9 +11,9 @@
   <active>yes</active>
  </lead>
  <date>2008-08-07</date>
- <time>00:30:32</time>
+ <time>01:36:32</time>
  <version>
-  <release>0.1.5</release>
+  <release>0.1.6</release>
   <api>0.1.2</api>
  </version>
  <stability>
@@ -22,7 +22,7 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
- * Fix Bug #14464: fatal error occurs if Output driver is set incorrectly
+ * Fix Bug #14465: 	warning if files (which are registered as installed) are missing
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
@@ -132,6 +132,20 @@
   </filelist>
  </phprelease>
  <changelog>
+  <release>
+   <version>
+    <release>0.1.6</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-08-07</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes> * Fix Bug #14465: warning if files (which are registered as installed) are missing
+   </notes>
+  </release>
   <release>
    <version>
     <release>0.1.5</release>
