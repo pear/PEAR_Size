@@ -271,8 +271,8 @@ class PEAR_Size
                 if (strpos($this->search_roles, $srole) !== false) {
                     $installed_location = $file['installed_as'];
 
-                    if (!file_exists(  $installed_location)) {
-                        $dn = explode("/",  $installed_location);
+                    if (!file_exists($installed_location)) {
+                        $dn = explode("/", $installed_location);
                         if ($dn[0] == 'debian') {
                             array_shift($dn);
                             array_shift($dn);
