@@ -519,6 +519,7 @@ class PEAR_Size
                 $this->setAllChannels();
                 break;
             case 'c':
+            case 'channel':
                 $this->setChannel(trim($param));
                 break;
             case 'C':

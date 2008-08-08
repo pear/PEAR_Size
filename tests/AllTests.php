@@ -9,6 +9,7 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once 'PEAR_Size_TestSuite_Standard.php';
 require_once 'PEAR_Size_TestSuite_CLI.php';
+require_once 'PEAR_Size_TestSuite_Bugs.php';
 
 
 class PEAR_Size_AllTests
@@ -24,6 +25,7 @@ class PEAR_Size_AllTests
         $suite = new PHPUnit_Framework_TestSuite('PEAR_Size Tests');
         $suite->addTestSuite('PEAR_Size_Test_Standard');
         $suite->addTestSuite('PEAR_Size_Test_CLI');
+        $suite->addTestSuite('PEAR_Size_Test_Bugs');
 
         return $suite;
     }
