@@ -256,18 +256,19 @@ class  PEAR_SIZE_OutputFactory implements PEAR_SIZE_Factory
     public function createInstance($type = 'text')
     {
         $driverfile = "PEAR/Size/Output_". $type . ".php";
-        $paths = explode(":", ini_get("include_path"));
-        $result = false;
+        $paths      = explode(":", ini_get("include_path"));
+        $result     = false;
 
-        while( (!($result)) && (list($key,$val) = each($paths)) ) {
+        while ((!($result)) && (list($key,$val) = each($paths))) {
             $result = @file_exists($val . "/" . $driverfile);
         }
         if ($result) {
-            require $driverfile;
+            include $driverfile;
             $class = "PEAR_Size_Output_". $type;
             return new $class();
         } else {
-            throw new PEAR_Size_Exception("Output driver $driverfile could not be found.");
+            throw new PEAR_Size_Exception("Output driver " .
+                                          "$driverfile could not be found.");
         }
     }
 }
