@@ -24,7 +24,7 @@
  * @version   CVS: $Id$
  * @link      http://pear.php.net/package/PEAR_Size
  */
-interface PEAR_SIZE_Factory
+interface PEAR_Size_Factory
 {
     /**
      * create required instance of the Output 'driver'.
@@ -237,14 +237,14 @@ class PEAR_Size_Output_Driver
  *
  * @category  PEAR
  * @package   PEAR_Size
- * @uses      PEAR_SIZE_Factory
+ * @uses      PEAR_Size_Factory
  * @author    Ken Guest <ken@linux.ie>
  * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
  * @version   Release: @PACKAGE_VERSION@
  * @link      http://pear.php.net/package/PEAR_Size
  */
-class  PEAR_SIZE_OutputFactory implements PEAR_SIZE_Factory
+class  PEAR_Size_OutputFactory implements PEAR_Size_Factory
 {
     /**
      * create required instance of the Output 'driver'.
