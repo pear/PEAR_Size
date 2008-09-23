@@ -115,7 +115,7 @@
    <package>
     <name>Console_Table</name>
     <channel>pear.php.net</channel>
-    <min>1.0.8</min>
+    <min>1.1.0</min>
    </package>
    <package>
     <name>HTML_Table</name>
