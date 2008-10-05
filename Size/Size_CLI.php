@@ -137,6 +137,8 @@ class PEAR_Size_CLI
             fputs(STDOUT, "  -V, --version        ");
             fputs(STDOUT, "output version information and exit\n");
             fputs(STDOUT, "  -X, --xml            output results in XML format\n");
+            fputs(STDOUT, "  -0, --killzero       do not output zero ");
+            fputs(STDOUT, "values in verbose mode\n");
 
             fputs(STDOUT, "\nTypes:\n");
             fputs(STDOUT, "You can specify a subset of roles/file-types to be ");
@@ -190,10 +192,11 @@ class PEAR_Size_CLI
                     'verbose',
                     'version',
                     'xml',
+                    'killzero',
                     );
             //determine which options are being used.
             $options = Console_Getopt::getopt($argv,
-                                              "aAc:ChHt:SsVvX",
+                                              "aAc:ChHt:SsVvX0",
                                               $long_options);
         }
 

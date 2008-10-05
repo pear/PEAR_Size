@@ -54,6 +54,10 @@
      <shortopt>X</shortopt>
      <doc>output results in XML format.</doc>
    </xml>
+   <killzero>
+     <shortopt>0</shortopt>
+     <doc>do not display zero values in verbose mode</doc>
+   </killzero>
  </options>
  </size>
 </commands>

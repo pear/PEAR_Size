@@ -165,6 +165,12 @@ class PEAR_Size
      */
     private $_readable = false;
 
+
+    /**
+     *
+     */
+    private $_all_values = true;
+
     /**
      * list of channels returned by getChannels method.
      *
@@ -312,6 +318,7 @@ class PEAR_Size
         $this->_channels     = array();
         $this->_all          = false;
         $this->_all_channels = false;
+        $this->_all_values   = true;
         $this->_verbose      = false;
         $this->_readable     = false;
         $this->search_roles  = '|data|doc|ext|php|script|src|test|';
@@ -385,6 +392,18 @@ class PEAR_Size
     public function setHumanReadable($value = true)
     {
         $this->_readable = $value;
+    }
+
+    /**
+     * Should the driver display/include zero values.
+     *
+     * @param bool $value defaults to false.
+     *
+     * @return void
+     */
+    public function setDontDisplayZeroValues($value = false)
+    {
+        $this->_all_values = ($value == false);
     }
 
     /**
@@ -510,6 +529,10 @@ class PEAR_Size
             $argument = preg_replace("/^--/", '', $opt[0]);
             $param    = $opt[1];
             switch ($argument) {
+            case 'killzero':
+            case '0':
+                $this->setDontDisplayZeroValues(true);
+                break;
             case 'all':
             case 'a':
                 $this->setAll();
@@ -656,6 +679,7 @@ class PEAR_Size
     public function generateReport()
     {
         $display_params = array("verbose" => $this->_verbose,
+                                "all_values" => $this->_all_values,
                                 "readable" => $this->_readable,
                                 "sort_size" => $this->_sort_size,
                                 "summarise" => $this->_summarise,

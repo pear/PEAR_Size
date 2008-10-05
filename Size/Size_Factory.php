@@ -21,7 +21,7 @@
  * @author    Ken Guest <ken@linux.ie>
  * @copyright 2008 Ken Guest
  * @license   LGPL (see http://www.gnu.org/licenses/lgpl.html)
- * @version   CVS: $Id$
+ * @version   Release: @PACKAGE_VERSION@
  * @link      http://pear.php.net/package/PEAR_Size
  */
 interface PEAR_Size_Factory
@@ -152,11 +152,12 @@ class PEAR_Size_Output_Driver
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
         $details = explode("|", $indices);
 
-        $this->_verbose   = $display_params["verbose"];
-        $this->_readable  = $display_params["readable"];
-        $this->_round     = $display_params["round"];
-        $this->_summarise = $display_params["summarise"];
-        $this->_sort_size = $display_params["sort_size"];
+        $this->_verbose    = $display_params["verbose"];
+        $this->_readable   = $display_params["readable"];
+        $this->_all_values = $display_params["all_values"];
+        $this->_round      = $display_params["round"];
+        $this->_summarise  = $display_params["summarise"];
+        $this->_sort_size  = $display_params["sort_size"];
 
         //$stats, $details
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
@@ -211,11 +212,16 @@ class PEAR_Size_Output_Driver
             if ($this->_verbose) {
                 $line = '';
                 foreach ($details as $detail) {
-                    $line .= "$detail: ";
-                    $line .= $this->_readableLine($statistic['sizes'][$detail],
+                    $value = $this->_readableLine($statistic['sizes'][$detail],
                             $this->_readable,
                             $this->_round);
-                    $line .= "; ";
+                    if (($this->_all_values) or ($value > 0)) {
+                        $line .= "$detail: ";
+                        $line .= $this->_readableLine($statistic['sizes'][$detail],
+                                $this->_readable,
+                                $this->_round);
+                        $line .= "; ";
+                    }
                 }
                 $line      = substr($line, 0, strlen($line) - 2);
                 $content[] = "($line)";
