@@ -91,7 +91,6 @@ class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver
      */
     public function table()
     {
-        #$tbl = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT);
         $tbl = new Console_Table(CONSOLE_TABLE_ALIGN_LEFT, " ", 0);
         //set up filters for limiting widths of columns inside the table
         $filter0 = array($this, '_splitName');

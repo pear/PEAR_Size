@@ -601,9 +601,11 @@ class PEAR_Size
         $this->errors = array();
 
         $mixed = false;
-        foreach ($this->_options[1] as $name) {
-            if (strpos($name, "/") !== false) {
-                $mixed = true;
+        if ($this->_options !== array()) {
+            foreach ($this->_options[1] as $name) {
+                if (strpos($name, "/") !== false) {
+                    $mixed = true;
+                }
             }
         }
 

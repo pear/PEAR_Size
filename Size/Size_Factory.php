@@ -112,7 +112,7 @@ class PEAR_Size_Output_Driver
      *
      * @return string
      */
-    private function _readableLine($value, $readable, $round)
+    protected function _readableLine($value, $readable, $round)
     {
         if ($readable) {
             return $this->_sizeReadable($value, null, $round);
@@ -199,7 +199,7 @@ class PEAR_Size_Output_Driver
      *
      * @return void
      */
-    private function _channelReport($stats, $details)
+    protected function _channelReport($stats, $details)
     {
         $table         = $this->table();
         $content_added = false;
