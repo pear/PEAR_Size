@@ -92,7 +92,7 @@ class PEAR_Command_Size extends PEAR_Command_Common
                     "doc"      => "output results in XML format"),
                 "killzero"     => array(
                     "shortopt" => "0",
-                    "doc"      => "do not display zero values in verbose mode"),
+                    "doc"      => "do not output zero values in verbose mode"),
 
     ),
     'doc' => '[PACKAGE ...]

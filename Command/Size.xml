@@ -56,7 +56,7 @@
    </xml>
    <killzero>
      <shortopt>0</shortopt>
-     <doc>do not display zero values in verbose mode</doc>
+     <doc>do not output zero values in verbose mode</doc>
    </killzero>
  </options>
  </size>

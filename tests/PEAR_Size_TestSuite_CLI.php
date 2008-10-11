@@ -63,6 +63,7 @@ Display information on how much space an installed PEAR package required.
       --help           display this help and exit
   -V, --version        output version information and exit
   -X, --xml            output results in XML format
+  -0, --killzero       do not output zero values in verbose mode
 
 Types:
 You can specify a subset of roles/file-types to be listed in the report.
@@ -91,6 +92,7 @@ Display information on how much space an installed PEAR package required.
       --help           display this help and exit
   -V, --version        output version information and exit
   -X, --xml            output results in XML format
+  -0, --killzero       do not output zero values in verbose mode
 
 Types:
 You can specify a subset of roles/file-types to be listed in the report.
@@ -288,6 +290,8 @@ Options:
         output version information and exit
   -X, --xml
         output results in XML format
+  -0, --killzero
+        do not output zero values in verbose mode
 
 ";
         $this->assertPEARHelpExec('size', $expect, 1);
