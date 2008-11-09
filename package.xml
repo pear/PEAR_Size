@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.7.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>PEAR_Size</name>
  <channel>pear.php.net</channel>
  <summary>Determine and list how much filespace each installed package consumes.</summary>
@@ -10,10 +10,10 @@
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2008-09-24</date>
- <time>13:10:32</time>
+ <date>2008-11-09</date>
+ <time>13:09:21</time>
  <version>
-  <release>0.1.8</release>
+  <release>0.1.9</release>
   <api>0.1.2</api>
  </version>
  <stability>
@@ -22,7 +22,9 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
- * now dependant on version 1.1.0 of Console_Table
+ * Fix Bug #14764: html output is ugly [kguest]
+ * Fix Bug #14975: Unit test failures - 'Killzero' isn't rendered [kguest]
+ * Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
@@ -78,22 +80,22 @@
     </file>
    </dir> <!-- /Size -->
    <dir name="tests">
-    <file name="AllTests.php" role="test" />
-    <file name="PEAR_Size_TestSuite_CLI.php" role="test">
+    <file baseinstalldir="PEAR" name="AllTests.php" role="test" />
+    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_Bugs.php" role="test">
      <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
      <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
      <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
      <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
      <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file> 
-    <file name="PEAR_Size_TestSuite_Bugs.php" role="test">
+    </file>
+    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_CLI.php" role="test">
      <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
      <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
      <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
      <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
      <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file> 
-    <file name="PEAR_Size_TestSuite_Standard.php" role="test" />
+    </file>
+    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_Standard.php" role="test" />
    </dir> <!-- /tests -->
    <file baseinstalldir="PEAR" name="TODO" role="doc" />
   </dir> <!-- / -->
@@ -141,6 +143,19 @@
  <changelog>
   <release>
    <version>
+    <release>0.1.9</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-09-24</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>* now dependant on version 1.1.0 of Console_Table</notes>
+  </release>
+  <release>
+   <version>
     <release>0.1.8</release>
     <api>0.1.2</api>
    </version>
@@ -150,9 +165,7 @@
    </stability>
    <date>2008-09-24</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>
-   * now dependant on version 1.1.0 of Console_Table
-   </notes>
+   <notes>* now dependant on version 1.1.0 of Console_Table</notes>
   </release>
   <release>
    <version>
@@ -165,10 +178,8 @@
    </stability>
    <date>2008-09-21</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>
-   * Fix Bug #14465: warning if files (which are registered as installed) are missing
-   * Fix Bug #14474: channel selection doesn't work
-   </notes>
+   <notes>* Fix Bug #14465: warning if files (which are registered as installed) are missing
+* Fix Bug #14474: channel selection doesn't work</notes>
   </release>
   <release>
    <version>
@@ -181,8 +192,7 @@
    </stability>
    <date>2008-08-07</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes> * Fix Bug #14465: warning if files (which are registered as installed) are missing
-   </notes>
+   <notes>* Fix Bug #14465: warning if files (which are registered as installed) are missing</notes>
   </release>
   <release>
    <version>
@@ -196,7 +206,7 @@
    <date>2008-08-07</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>* Fix Bug #14464: fatal error occurs if Output driver is set incorrectly</notes>
-   </release>
+  </release>
   <release>
    <version>
     <release>0.1.4</release>
@@ -208,13 +218,13 @@
    </stability>
    <date>2008-05-17</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* Fix Bug #13619: XML output - pear size -X PEAR_Size doesn&apos;t work [kguest]
-* Fix Bug #13620: sort by file size doesn&apos;t work [kguest]
+   <notes>* Fix Bug #13619: XML output - pear size -X PEAR_Size doesn't work [kguest]
+* Fix Bug #13620: sort by file size doesn't work [kguest]
 * Fix Bug #13630: xml output contains header lines from CSV driver [kguest]
-* Fix Bug #13647: package description should identify what &apos;df&apos; is [kguest]
+* Fix Bug #13647: package description should identify what 'df' is [kguest]
 * Fix Bug #13655: Wrong behaviour when specified package not found [kguest]
 * Fix Bug #13660: Size.xml is incomplete [kguest]
-* Fix Bug #13663: usage doesn&apos;t list all supported types [kguest]
+* Fix Bug #13663: usage doesn't list all supported types [kguest]
 * Fix Bug #13709: Some form of end-user documentation is required. [kguest]
 * Fix Bug #13907: output format is always xml [kguest]
 * Implement Feature #13618: pear size $channel/$package does not work [kguest]</notes>
@@ -230,7 +240,7 @@
    </stability>
    <date>2008-04-08</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+   <notes>* bug fix: #13549 - all PEAR roles are supported (including 'ext' and 'src')
 * request: #13441 - console/text output is neater
 * request: #13442 - channel summary
 * request: #13527 - CSV output
@@ -253,7 +263,7 @@
 * request: CSV output
 * request: XML output
 * request: console/text output is neater
-* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)</notes>
+* bug fix: #13549 - all PEAR roles are supported (including 'ext' and 'src')</notes>
   </release>
   <release>
    <version>
@@ -270,7 +280,7 @@
 * request: CSV output
 * request: XML output
 * request: console/text output is neater
-* bug fix: all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)</notes>
+* bug fix: all PEAR roles are supported (including 'ext' and 'src')</notes>
   </release>
   <release>
    <version>
