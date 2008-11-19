@@ -9,6 +9,7 @@ require_once "PHPUnit/Framework/TestSuite.php";
 require_once 'PEAR/Size.php';
 require_once 'PEAR/Size/CLI.php';
 
+require_once 'PEAR/Registry.php';
 /**
  * A test suite class to test the standard PEAR_Size API/CLI interactions.
  *
@@ -23,7 +24,6 @@ require_once 'PEAR/Size/CLI.php';
  */
 class PEAR_Size_Test_CLI extends PHPUnit_Framework_TestCase
 {
-
     /**
      * Runs the test methods of this class.
      *
@@ -45,6 +45,10 @@ class PEAR_Size_Test_CLI extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $reg = new PEAR_Registry;
+        if ($reg->getPackage("PEAR_Size") == null) {
+            $this->markTestSkipped("PEAR_Size is not installed.");
+        }
         $this->cli = new PEAR_Size_CLI();
         $this->genericResponse = "Usage: pearsize [OPTIONS] [PACKAGE]
 Display information on how much space an installed PEAR package required.
