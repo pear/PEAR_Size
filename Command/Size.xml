@@ -1,0 +1,63 @@
+<commands version="1.0">
+ <size>
+ <summary>Information on how much space a package requires.</summary>
+ <function>doSize</function>
+ <shortcut>sz</shortcut>
+ <options>
+   <all>
+     <shortopt>a</shortopt>
+     <doc>display information for all installed packages</doc>
+   </all>
+   <allchannels>
+     <shortopt>A</shortopt>
+     <doc>list packages from all channels, not just the default one</doc>
+   </allchannels>
+   <channel>
+     <shortopt>c</shortopt>
+     <arg>CHANNEL</arg>
+     <doc>specify which channel</doc>
+   </channel>
+   <csv>
+     <shortopt>C</shortopt>
+     <doc>output results in CSV format (sizes are measured in bytes).</doc>
+   </csv>
+   <human-readable>
+     <shortopt>h</shortopt>
+     <doc>print sizes in human readable format (for example: 492 B 1KB 7MB)</doc>
+   </human-readable>
+   <si>
+     <shortopt>H</shortopt>
+     <doc>likewise, but use powers of 1000 not 1024</doc>
+   </si>
+   <type>
+     <shortopt>t</shortopt>
+     <arg>TYPES</arg>
+     <doc>specify what type of files are required for the report</doc>
+   </type>
+   <summarise>
+     <shortopt>s</shortopt>
+     <doc>display channel summary view</doc>
+   </summarise>
+   <fsort>
+     <shortopt>S</shortopt>
+     <doc>sort by file size</doc>
+   </fsort>  
+   <verbose>
+     <shortopt>v</shortopt>
+     <doc>display more detailed information</doc>
+   </verbose>
+   <version>
+     <shortopt>V</shortopt>
+     <doc>output version information and exit</doc>
+   </version>
+   <xml>
+     <shortopt>X</shortopt>
+     <doc>output results in XML format.</doc>
+   </xml>
+   <killzero>
+     <shortopt>0</shortopt>
+     <doc>do not output zero values in verbose mode</doc>
+   </killzero>
+ </options>
+ </size>
+</commands>

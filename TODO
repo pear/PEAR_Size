@@ -1,0 +1,4 @@
+- include an option to account for dependencies in displayed file sizes; this
+option would only be available/valid if only one 'target' package.
+
+- Right alignment of the sizes would be nice
