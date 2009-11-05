@@ -10,21 +10,20 @@
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2008-11-09</date>
+ <date>2009-11-05</date>
  <time>13:09:21</time>
  <version>
-  <release>0.1.9</release>
+  <release>0.2.0</release>
   <api>0.1.2</api>
  </version>
  <stability>
-  <release>alpha</release>
-  <api>alpha</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
- * Fix Bug #14764: html output is ugly [kguest]
- * Fix Bug #14975: Unit test failures - 'Killzero' isn't rendered [kguest]
- * Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
+    * Bug 14975 - Unit test failures - "Killzero" isn't rendered
+    * Bug 15087 - Unit tests should skip if pear size isn't installed
  </notes>
  <contents>
   <dir baseinstalldir="PEAR" name="/">
@@ -152,7 +151,12 @@
    </stability>
    <date>2008-09-24</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* now dependant on version 1.1.0 of Console_Table</notes>
+   <notes>
+ * now dependant on version 1.1.0 of Console_Table
+ * Fix Bug #14764: html output is ugly [kguest]
+ * Fix Bug #14975: Unit test failures - 'Killzero' isn't rendered [kguest]
+ * Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
+   </notes>
   </release>
   <release>
    <version>
