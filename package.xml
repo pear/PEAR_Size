@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.0RC1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>PEAR_Size</name>
  <channel>pear.php.net</channel>
  <summary>Determine and list how much filespace each installed package consumes.</summary>
- <description>A commandline tool modeled on the Unix 'df' that lists how much filespace each installed package consumes. A subset of packages can be specified as can channels.</description>
+ <description>A commandline tool modeled on the Unix &apos;df&apos; that lists how much filespace each installed package consumes. A subset of packages can be specified as can channels.</description>
  <lead>
   <name>Ken Guest</name>
   <user>kguest</user>
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2009-11-05</date>
- <time>13:09:21</time>
+ <date>2010-02-15</date>
+ <time>06:44:29</time>
  <version>
   <release>0.2.0</release>
   <api>0.1.2</api>
@@ -22,82 +22,58 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
-    * Bug 14975 - Unit test failures - "Killzero" isn't rendered
-    * Bug 15087 - Unit tests should skip if pear size isn't installed
+* Bug 14975 - Unit test failures - &quot;Killzero&quot; isn&apos;t rendered
+* Bug 15087 - Unit tests should skip if pear size isn&apos;t installed
  </notes>
  <contents>
-  <dir baseinstalldir="PEAR" name="/">
-   <dir name="Command">
-    <file baseinstalldir="/" install-as="PEAR/Command/Size.php" name="Size.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Command/Size.xml" name="Size.xml" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-   </dir> <!-- /Command -->
-   <dir name="docs">
-    <file baseinstalldir="PEAR" name="script-usage.txt" role="doc" />
-   </dir> <!-- /docs -->
-   <dir name="scripts">
-    <file baseinstalldir="/" install-as="pearsize.bat" name="pearsize.bat" role="script">
-     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
-     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
-     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
-     <tasks:windowseol />
-    </file>
-    <file baseinstalldir="/" install-as="pearsize" name="pearsize.php" role="script">
-     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-     <tasks:unixeol />
-    </file>
-   </dir> <!-- /scripts -->
-   <dir name="Size">
-    <file baseinstalldir="/" install-as="PEAR/Size.php" name="Size.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/CLI.php" name="Size_CLI.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/Exception.php" name="Size_Exception.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/Factory.php" name="Size_Factory.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/Output_csv.php" name="Size_Output_csv.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/Output_html.php" name="Size_Output_html.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/Output_text.php" name="Size_Output_text.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="/" install-as="PEAR/Size/Output_xml.php" name="Size_Output_xml.php" role="php">
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-   </dir> <!-- /Size -->
-   <dir name="tests">
-    <file baseinstalldir="PEAR" name="AllTests.php" role="test" />
-    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_Bugs.php" role="test">
-     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
-     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
-     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_CLI.php" role="test">
-     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
-     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
-     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
-     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    </file>
-    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_Standard.php" role="test" />
-   </dir> <!-- /tests -->
-   <file baseinstalldir="PEAR" name="TODO" role="doc" />
-  </dir> <!-- / -->
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="d623365616eca8f30efdd463ad3fd559" name="Command/Size.php" role="php">
+    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="/" md5sum="4ee70014e1d2b5d5a2ad6aa13b487597" name="Command/Size.xml" role="php">
+    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="PEAR" md5sum="869a113fc7bda07f99d51b0aeab49a81" name="docs/script-usage.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="2cfa3acb2ee068d11cd3a0f75c249705" name="PEAR/Size.php" role="php" />
+   <file baseinstalldir="/" md5sum="087810c90e779bbd5a93a02a6cee5703" name="PEAR/Size/CLI.php" role="php" />
+   <file baseinstalldir="/" md5sum="b0ebeec4506bc7c518edcf21bd467be9" name="PEAR/Size/Exception.php" role="php" />
+   <file baseinstalldir="/" md5sum="98468f75a5408047479ddc0758e56358" name="PEAR/Size/Factory.php" role="php" />
+   <file baseinstalldir="/" md5sum="4a0e336d068a7cca0767e456410f5525" name="PEAR/Size/Output/csv.php" role="php" />
+   <file baseinstalldir="/" md5sum="327df16e570b28e86c817c4252598d7a" name="PEAR/Size/Output/html.php" role="php" />
+   <file baseinstalldir="/" md5sum="dcf1e347d06159381517743c1771f886" name="PEAR/Size/Output/text.php" role="php" />
+   <file baseinstalldir="/" md5sum="c8da4c04d953c962495cd2e06e0d069f" name="PEAR/Size/Output/xml.php" role="php" />
+   <file baseinstalldir="" md5sum="65e270257439fb3295b05ecc57d7c2c0" name="scripts/create_package.xml.php" role="script" />
+   <file baseinstalldir="" md5sum="267e2b7bf5b373723e62fab9d9046fce" name="scripts/gendocs.sh" role="script" />
+   <file baseinstalldir="" md5sum="415a6f975ca7dd4a641c4f57df47ffea" name="scripts/pearsize.bat" role="script">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+    <tasks:windowseol />
+   </file>
+   <file baseinstalldir="" md5sum="a41fd1620e2c261a45acf767912afa22" name="scripts/pearsize.php" role="script">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    <tasks:unixeol />
+   </file>
+   <file baseinstalldir="PEAR" md5sum="a9832a7e09c2c23ee9399494de07deb6" name="tests/AllTests.php" role="test" />
+   <file baseinstalldir="PEAR" md5sum="f2b62b9a4603b8972cec8eb1396e1eab" name="tests/PEAR_Size_TestSuite_Bugs.php" role="test">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="PEAR" md5sum="63de162c977c9ca5c16ffb4a5ba08e89" name="tests/PEAR_Size_TestSuite_CLI.php" role="test">
+    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="PEAR" md5sum="b3a6623ab8b48e41afbd9508189352b1" name="tests/PEAR_Size_TestSuite_Standard.php" role="test" />
+   <file baseinstalldir="PEAR" md5sum="94db6c6ce2b39c921fa0d156b3d4f9ed" name="TODO" role="doc" />
+  </dir>
  </contents>
  <dependencies>
   <required>
@@ -132,30 +108,154 @@
   </installconditions>
   <filelist>
    <install as="pearsize.bat" name="scripts/pearsize.bat" />
-  </filelist>
- </phprelease>
- <phprelease>
-  <filelist>
-   <ignore name="scripts/pearsize.bat" />
+   <install as="create_package.xml.php" name="scripts/create_package.xml.php" />
+   <install as="gendocs.sh" name="scripts/gendocs.sh" />
+   <install as="pearsize.php" name="scripts/pearsize.php" />
   </filelist>
  </phprelease>
  <changelog>
   <release>
    <version>
-    <release>0.1.9</release>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-01-05</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+Initial version
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.1</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-03-31</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.2</release>
     <api>0.1.2</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-09-24</date>
+   <date>2008-03-31</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
- * now dependant on version 1.1.0 of Console_Table
- * Fix Bug #14764: html output is ugly [kguest]
- * Fix Bug #14975: Unit test failures - 'Killzero' isn't rendered [kguest]
- * Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
+* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.3</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-04-08</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+* request: #13441 - console/text output is neater
+* request: #13442 - channel summary
+* request: #13527 - CSV output
+* request: #13550 - XML output
+* request: #13572 - move cli processing intelligence from PEAR_Size to separate class
+* request: #13573 - integration with pear command
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.4</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-05-17</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #13619: XML output - pear size -X PEAR_Size doesn&apos;t work [kguest]
+* Fix Bug #13620: sort by file size doesn&apos;t work [kguest]
+* Fix Bug #13630: xml output contains header lines from CSV driver [kguest]
+* Fix Bug #13647: package description should identify what &apos;df&apos; is [kguest]
+* Fix Bug #13655: Wrong behaviour when specified package not found [kguest]
+* Fix Bug #13660: Size.xml is incomplete [kguest]
+* Fix Bug #13663: usage doesn&apos;t list all supported types [kguest]
+* Fix Bug #13709: Some form of end-user documentation is required. [kguest]
+* Fix Bug #13907: output format is always xml [kguest]
+* Implement Feature #13618: pear size $channel/$package does not work [kguest]
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.5</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-08-07</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #14464: fatal error occurs if Output driver is set incorrectly
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.6</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-08-07</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #14465: warning if files (which are registered as installed) are missing
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.7</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-09-21</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #14465: warning if files (which are registered as installed) are missing
+* Fix Bug #14474: channel selection doesn&apos;t work
    </notes>
   </release>
   <release>
@@ -169,135 +269,43 @@
    </stability>
    <date>2008-09-24</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* now dependant on version 1.1.0 of Console_Table</notes>
+   <notes>
+* now dependant on version 1.1.0 of Console_Table
+   </notes>
   </release>
   <release>
    <version>
-    <release>0.1.7</release>
+    <release>0.1.9</release>
     <api>0.1.2</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-09-21</date>
+   <date>2008-09-24</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* Fix Bug #14465: warning if files (which are registered as installed) are missing
-* Fix Bug #14474: channel selection doesn't work</notes>
+   <notes>
+* now dependant on version 1.1.0 of Console_Table
+* Fix Bug #14764: html output is ugly [kguest]
+* Fix Bug #14975: Unit test failures - &apos;Killzero&apos; isn&apos;t rendered [kguest]
+* Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
+   </notes>
   </release>
   <release>
    <version>
-    <release>0.1.6</release>
+    <release>0.2.0</release>
     <api>0.1.2</api>
    </version>
    <stability>
-    <release>alpha</release>
-    <api>alpha</api>
+    <release>beta</release>
+    <api>beta</api>
    </stability>
-   <date>2008-08-07</date>
+   <date>2010-02-15</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* Fix Bug #14465: warning if files (which are registered as installed) are missing</notes>
-  </release>
-  <release>
-   <version>
-    <release>0.1.5</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-08-07</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* Fix Bug #14464: fatal error occurs if Output driver is set incorrectly</notes>
-  </release>
-  <release>
-   <version>
-    <release>0.1.4</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-05-17</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* Fix Bug #13619: XML output - pear size -X PEAR_Size doesn't work [kguest]
-* Fix Bug #13620: sort by file size doesn't work [kguest]
-* Fix Bug #13630: xml output contains header lines from CSV driver [kguest]
-* Fix Bug #13647: package description should identify what 'df' is [kguest]
-* Fix Bug #13655: Wrong behaviour when specified package not found [kguest]
-* Fix Bug #13660: Size.xml is incomplete [kguest]
-* Fix Bug #13663: usage doesn't list all supported types [kguest]
-* Fix Bug #13709: Some form of end-user documentation is required. [kguest]
-* Fix Bug #13907: output format is always xml [kguest]
-* Implement Feature #13618: pear size $channel/$package does not work [kguest]</notes>
-  </release>
-  <release>
-   <version>
-    <release>0.1.3</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-04-08</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* bug fix: #13549 - all PEAR roles are supported (including 'ext' and 'src')
-* request: #13441 - console/text output is neater
-* request: #13442 - channel summary
-* request: #13527 - CSV output
-* request: #13550 - XML output
-* request: #13572 - move cli processing intelligence from PEAR_Size to separate class
-* request: #13573 - integration with pear command</notes>
-  </release>
-  <release>
-   <version>
-    <release>0.1.2</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-03-31</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* request: channel summary
-* request: CSV output
-* request: XML output
-* request: console/text output is neater
-* bug fix: #13549 - all PEAR roles are supported (including 'ext' and 'src')</notes>
-  </release>
-  <release>
-   <version>
-    <release>0.1.1</release>
-    <api>0.1.0</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-03-31</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>* request: channel summary
-* request: CSV output
-* request: XML output
-* request: console/text output is neater
-* bug fix: all PEAR roles are supported (including 'ext' and 'src')</notes>
-  </release>
-  <release>
-   <version>
-    <release>0.0.1</release>
-    <api>0.0.1</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-01-05</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>Initial version</notes>
+   <notes>
+* Bug 14975 - Unit test failures - &quot;Killzero&quot; isn&apos;t rendered
+* Bug 15087 - Unit tests should skip if pear size isn&apos;t installed
+   </notes>
   </release>
  </changelog>
 </package>
