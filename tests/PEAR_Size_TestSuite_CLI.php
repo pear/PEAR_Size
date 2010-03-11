@@ -132,11 +132,17 @@ Examples:
      */
     private function assertScriptExec($args, $exp, $status = 0)
     {
-        $ps      = PATH_SEPARATOR;
+        $ps = PATH_SEPARATOR;
         /*
         $command = '@PHP-BIN@ '
                  . '-d include_path=.' . $ps . '@PEAR-DIR@ '
                  . '-f @BIN-DIR@/pearsize -- '; */
+        if ((!file_exists('/usr/bin/php')) or (!is_executable('/usr/bin/php'))) {
+            $this->markTestSkipped('php in unexpected location or not executable');
+        }
+        if ((!file_exists('/usr/bin/pearsize')) or (!is_executable('/usr/bin/pearsize'))) {
+            $this->markTestSkipped('pearsize in unexpected location or not executable');
+        }
         $command = '/usr/bin/php '
                  . '-d include_path=.' . $ps . '/usr/share/php '
                  . '-f /usr/bin/pearsize -- ';
@@ -164,6 +170,9 @@ Examples:
     private function assertPEARHelpExec($args, $exp, $status = 0)
     {
         $ps      = PATH_SEPARATOR;
+        if ((!file_exists('/usr/bin/pear')) or (!is_executable('/usr/bin/pear'))) {
+            $this->markTestSkipped('pear in unexpected location or not executable');
+        }
         $command = '/usr/bin/pear help ';
         $return  = 0;
 
@@ -185,7 +194,10 @@ Examples:
      */
     private function assertIntegratedExec($args, $exp, $status = 0)
     {
-        $ps      = PATH_SEPARATOR;
+        $ps = PATH_SEPARATOR;
+        if ((!file_exists('/usr/bin/pear')) or (!is_executable('/usr/bin/pear'))) {
+            $this->markTestSkipped('pear in unexpected location or not executable');
+        }
         $command = '/usr/bin/pear size ';
         $return  = 0;
 
