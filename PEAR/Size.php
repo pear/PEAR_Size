@@ -260,7 +260,8 @@ class PEAR_Size
                     'php'    => 0,
                     'script' => 0,
                     'src'    => 0,
-                    'test'   => 0);
+                    'test'   => 0,
+                    'www'    => 0);
             $pkg   = $this->reg->getPackage($package, $this->_channels_full[$index]);
             if ($pkg === null) {
                 array_push($this->warnings, "Package \"$package\" not found");
@@ -321,7 +322,7 @@ class PEAR_Size
         $this->_all_values   = true;
         $this->_verbose      = false;
         $this->_readable     = false;
-        $this->search_roles  = '|data|doc|ext|php|script|src|test|';
+        $this->search_roles  = '|data|doc|ext|php|script|src|test|www|';
         $this->_sort_size    = false;
         $this->_round        = false;
         $this->_channel      = array();
