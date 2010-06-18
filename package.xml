@@ -27,52 +27,52 @@
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" md5sum="d623365616eca8f30efdd463ad3fd559" name="Command/Size.php" role="php">
+   <file baseinstalldir="/" name="Command/Size.php" role="php">
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="/" md5sum="4ee70014e1d2b5d5a2ad6aa13b487597" name="Command/Size.xml" role="php">
+   <file baseinstalldir="/" name="Command/Size.xml" role="php">
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="PEAR" md5sum="869a113fc7bda07f99d51b0aeab49a81" name="docs/script-usage.txt" role="doc" />
-   <file baseinstalldir="/" md5sum="2cfa3acb2ee068d11cd3a0f75c249705" name="PEAR/Size.php" role="php" />
-   <file baseinstalldir="/" md5sum="087810c90e779bbd5a93a02a6cee5703" name="PEAR/Size/CLI.php" role="php" />
-   <file baseinstalldir="/" md5sum="b0ebeec4506bc7c518edcf21bd467be9" name="PEAR/Size/Exception.php" role="php" />
-   <file baseinstalldir="/" md5sum="98468f75a5408047479ddc0758e56358" name="PEAR/Size/Factory.php" role="php" />
-   <file baseinstalldir="/" md5sum="4a0e336d068a7cca0767e456410f5525" name="PEAR/Size/Output/csv.php" role="php" />
-   <file baseinstalldir="/" md5sum="327df16e570b28e86c817c4252598d7a" name="PEAR/Size/Output/html.php" role="php" />
-   <file baseinstalldir="/" md5sum="dcf1e347d06159381517743c1771f886" name="PEAR/Size/Output/text.php" role="php" />
-   <file baseinstalldir="/" md5sum="c8da4c04d953c962495cd2e06e0d069f" name="PEAR/Size/Output/xml.php" role="php" />
-   <file baseinstalldir="" md5sum="65e270257439fb3295b05ecc57d7c2c0" name="scripts/create_package.xml.php" role="script" />
-   <file baseinstalldir="" md5sum="267e2b7bf5b373723e62fab9d9046fce" name="scripts/gendocs.sh" role="script" />
-   <file baseinstalldir="" md5sum="415a6f975ca7dd4a641c4f57df47ffea" name="scripts/pearsize.bat" role="script">
+   <file baseinstalldir="PEAR" name="docs/script-usage.txt" role="doc" />
+   <file baseinstalldir="/" name="PEAR/Size.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/CLI.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/Exception.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/Factory.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/Output/csv.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/Output/html.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/Output/text.php" role="php" />
+   <file baseinstalldir="/" name="PEAR/Size/Output/xml.php" role="php" />
+   <file baseinstalldir="" name="scripts/create_package.xml.php" role="script" />
+   <file baseinstalldir="" name="scripts/gendocs.sh" role="script" />
+   <file baseinstalldir="" name="scripts/pearsize.bat" role="script">
     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
     <tasks:windowseol />
    </file>
-   <file baseinstalldir="" md5sum="a41fd1620e2c261a45acf767912afa22" name="scripts/pearsize.php" role="script">
+   <file baseinstalldir="" name="scripts/pearsize.php" role="script">
     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
     <tasks:unixeol />
    </file>
-   <file baseinstalldir="PEAR" md5sum="a9832a7e09c2c23ee9399494de07deb6" name="tests/AllTests.php" role="test" />
-   <file baseinstalldir="PEAR" md5sum="f2b62b9a4603b8972cec8eb1396e1eab" name="tests/PEAR_Size_TestSuite_Bugs.php" role="test">
+   <file baseinstalldir="PEAR" name="tests/AllTests.php" role="test" />
+   <file baseinstalldir="PEAR" name="tests/PEAR_Size_TestSuite_Bugs.php" role="test">
     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="PEAR" md5sum="63de162c977c9ca5c16ffb4a5ba08e89" name="tests/PEAR_Size_TestSuite_CLI.php" role="test">
+   <file baseinstalldir="PEAR" name="tests/PEAR_Size_TestSuite_CLI.php" role="test">
     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="PEAR" md5sum="b3a6623ab8b48e41afbd9508189352b1" name="tests/PEAR_Size_TestSuite_Standard.php" role="test" />
-   <file baseinstalldir="PEAR" md5sum="94db6c6ce2b39c921fa0d156b3d4f9ed" name="TODO" role="doc" />
+   <file baseinstalldir="PEAR" name="tests/PEAR_Size_TestSuite_Standard.php" role="test" />
+   <file baseinstalldir="PEAR" name="TODO" role="doc" />
   </dir>
  </contents>
  <dependencies>
@@ -111,6 +111,11 @@
    <install as="create_package.xml.php" name="scripts/create_package.xml.php" />
    <install as="gendocs.sh" name="scripts/gendocs.sh" />
    <install as="pearsize.php" name="scripts/pearsize.php" />
+  </filelist>
+ </phprelease>
+ <phprelease>
+  <filelist>
+   <ignore name="scripts/pearsize.bat" />
   </filelist>
  </phprelease>
  <changelog>
