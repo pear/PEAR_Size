@@ -228,6 +228,9 @@ Examples:
      */
     public function testVersion() {
         $expect = "@PACKAGE_VERSION@\n";
+        if (strpos($expect, "PACKAGE") !== false) {
+            $this->markTestSkipped("PEAR_Size is not installed - version number not substituted");
+        }
         $this->assertScriptExec('-V', $expect);
         $this->assertIntegratedExec('-V', $expect);
     }
