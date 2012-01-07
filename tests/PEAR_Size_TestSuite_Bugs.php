@@ -129,14 +129,21 @@ Examples:
      */
     private function assertScriptExec($args, $exp, $status = 0)
     {
-        $ps      = PATH_SEPARATOR;
-        /*
-        $command = '@PHP-BIN@ '
-                 . '-d include_path=.' . $ps . '@PEAR-DIR@ '
-                 . '-f @BIN-DIR@/pearsize -- '; */
-        $command = '/usr/bin/php '
-                 . '-d include_path=.' . $ps . '/usr/share/php '
-                 . '-f /usr/bin/pearsize -- ';
+        if ('@PEAR-DIR@' == '@'.'PEAR-DIR'.'@') {
+            // Run from source code checkout.
+            $pear_dir = dirname(dirname(__FILE__));
+            $bin = 'php';
+            $script = "$pear_dir/scripts/pearsize.php";
+        } else {
+            // Run from installation.
+            $pear_dir = '@PEAR-DIR@';
+            $bin = '@PHP-BIN@';
+            $script = '@BIN-DIR@/pearsize';
+        }
+        $include_path = "'$pear_dir'" . PATH_SEPARATOR . get_include_path();
+
+        $command = "'$bin' -d error_reporting=" . error_reporting()
+            . " -d include_path=$include_path -f '$script' -- ";
 
         $return = 0;
 
@@ -160,8 +167,15 @@ Examples:
 
     private function assertPEARHelpExec($args, $exp, $status = 0)
     {
-        $ps      = PATH_SEPARATOR;
-        $command = '/usr/bin/pear help ';
+        if ('@PEAR-DIR@' == '@'.'PEAR-DIR'.'@') {
+            // Run from source code checkout.
+            $bin = 'pear';
+        } else {
+            // Run from installation.
+            $bin = '@BIN-DIR@/pear';
+        }
+
+        $command = "'$bin' help ";
         $return  = 0;
 
         ob_start();
@@ -182,8 +196,15 @@ Examples:
      */
     private function assertIntegratedExec($args, $exp, $status = 0)
     {
-        $ps      = PATH_SEPARATOR;
-        $command = '/usr/bin/pear size ';
+        if ('@PEAR-DIR@' == '@'.'PEAR-DIR'.'@') {
+            // Run from source code checkout.
+            $bin = 'pear';
+        } else {
+            // Run from installation.
+            $bin = '@BIN-DIR@/pear';
+        }
+
+        $command = "'$bin' size ";
         $return  = 0;
 
         ob_start();
