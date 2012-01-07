@@ -261,7 +261,7 @@ class  PEAR_Size_OutputFactory implements PEAR_Size_Factory
      */
     public function createInstance($type = 'text')
     {
-        $driverfile = "PEAR/Size/Output_". $type . ".php";
+        $driverfile = "PEAR/Size/Output/". $type . ".php";
         $paths      = explode(":", ini_get("include_path"));
         $result     = false;
 
