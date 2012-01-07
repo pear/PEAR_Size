@@ -129,16 +129,17 @@ Examples:
      */
     private function assertScriptExec($args, $exp, $status = 0)
     {
+        $ds = DIRECTORY_SEPARATOR;
         if ('@PEAR-DIR@' == '@'.'PEAR-DIR'.'@') {
             // Run from source code checkout.
             $pear_dir = dirname(dirname(__FILE__));
             $bin = 'php';
-            $script = "$pear_dir/scripts/pearsize.php";
+            $script = "$pear_dir{$ds}scripts{$ds}pearsize.php";
         } else {
             // Run from installation.
             $pear_dir = '@PEAR-DIR@';
             $bin = '@PHP-BIN@';
-            $script = '@BIN-DIR@/pearsize';
+            $script = "@BIN-DIR@{$ds}pearsize";
         }
         $include_path = "'$pear_dir'" . PATH_SEPARATOR . get_include_path();
 
