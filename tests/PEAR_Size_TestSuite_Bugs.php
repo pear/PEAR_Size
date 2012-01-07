@@ -196,6 +196,11 @@ Examples:
      */
     private function assertIntegratedExec($args, $exp, $status = 0)
     {
+        $reg = new PEAR_Registry;
+        if ($reg->getPackage("PEAR_Size") == null) {
+            $this->markTestSkipped("PEAR_Size is not installed.");
+        }
+
         if ('@PEAR-DIR@' == '@'.'PEAR-DIR'.'@') {
             // Run from source code checkout.
             $bin = 'pear';
@@ -222,12 +227,21 @@ Examples:
      * @link http://pear.php.net/bugs/bug.php?id=14474
      * @return void
      */
-    public function testBug14474() {
+    public function testBug14474Script() {
         $expect = 'Channel "pear.example.com" does not exist' . "\n\n";
         $this->assertScriptExec(' -ah -s -c pear.example.com 2>&1',  $expect, 1);
-        $this->assertIntegratedExec(' -ah -s -c pear.example.com 2>&1',  $expect, 0);
     }
 
+    /**
+     * Regression test for bug #14474
+     *
+     * @link http://pear.php.net/bugs/bug.php?id=14474
+     * @return void
+     */
+    public function testBug14474Integrated() {
+        $expect = 'Channel "pear.example.com" does not exist' . "\n\n";
+        $this->assertIntegratedExec(' -ah -s -c pear.example.com 2>&1',  $expect, 0);
+    }
 }
 
 if (PHPUnit_MAIN_METHOD == "PEAR_Size_Test_Bugs::main") {
