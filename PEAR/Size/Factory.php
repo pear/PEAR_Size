@@ -27,7 +27,7 @@
 interface PEAR_Size_Factory
 {
     /**
-     * create required instance of the Output 'driver'.
+     * Create required instance of the Output 'driver'.
      *
      * @return object
      */
@@ -112,7 +112,7 @@ class PEAR_Size_Output_Driver
      *
      * @return string
      */
-    protected function _readableLine($value, $readable, $round)
+    protected function readableLine($value, $readable, $round)
     {
         if ($readable) {
             return $this->_sizeReadable($value, null, $round);
@@ -122,7 +122,7 @@ class PEAR_Size_Output_Driver
     }
 
     /**
-     * display given text.
+     * Display given text.
      *
      * @param string $text text to be displayed
      *
@@ -134,7 +134,7 @@ class PEAR_Size_Output_Driver
     }
 
     /**
-     * generate the report
+     * Generate the report
      *
      * @param array $channel_stats  contains statistics for each channel
      * @param array $search_roles   roles searched for
@@ -144,10 +144,10 @@ class PEAR_Size_Output_Driver
      * @return void
      */
     public function generateReport($channel_stats,
-                                   $search_roles,
-                                   $grand_total,
-                                   $display_params)
-    {
+        $search_roles,
+        $grand_total,
+        $display_params
+    ) {
 
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
         $details = explode("|", $indices);
@@ -164,9 +164,11 @@ class PEAR_Size_Output_Driver
         $details = explode("|", $indices);
 
         $msg  = "Total: ";
-        $msg .= $this->_readableLine($grand_total,
-                $this->_readable,
-                $this->_round);
+        $msg .= $this->readableLine(
+            $grand_total,
+            $this->_readable,
+            $this->_round
+        );
         $this->display($msg);
 
         foreach ($channel_stats as $channel_name=>$ca) {
@@ -186,7 +188,7 @@ class PEAR_Size_Output_Driver
                 usort($stats, array("PEAR_Size_Output_Driver","_sortBySize"));
             }
             if (!$this->_summarise) {
-                $this->_channelReport($stats, $details);
+                $this->channelReport($stats, $details);
             }
         }
     }
@@ -199,27 +201,33 @@ class PEAR_Size_Output_Driver
      *
      * @return void
      */
-    protected function _channelReport($stats, $details)
+    protected function channelReport($stats, $details)
     {
         $table         = $this->table();
         $content_added = false;
         foreach ($stats as $statistic) {
             $content   = array();
             $content[] = $statistic['package'];
-            $content[] = $this->_readableLine($statistic['total'],
-                    $this->_readable,
-                    $this->_round);
+            $content[] = $this->_readableLine(
+                $statistic['total'],
+                $this->_readable,
+                $this->_round
+            );
             if ($this->_verbose) {
                 $line = '';
                 foreach ($details as $detail) {
-                    $value = $this->_readableLine($statistic['sizes'][$detail],
-                            $this->_readable,
-                            $this->_round);
+                    $value = $this->_readableLine(
+                        $statistic['sizes'][$detail],
+                        $this->_readable,
+                        $this->_round
+                    );
                     if (($this->_all_values) or ($value > 0)) {
                         $line .= "$detail: ";
-                        $line .= $this->_readableLine($statistic['sizes'][$detail],
-                                $this->_readable,
-                                $this->_round);
+                        $line .= $this->_readableLine(
+                            $statistic['sizes'][$detail],
+                            $this->_readable,
+                            $this->_round
+                        );
                         $line .= "; ";
                     }
                 }
@@ -253,7 +261,7 @@ class PEAR_Size_Output_Driver
 class  PEAR_Size_OutputFactory implements PEAR_Size_Factory
 {
     /**
-     * create required instance of the Output 'driver'.
+     * Create required instance of the Output 'driver'.
      *
      * @param string $type type of instance required, lowercase. 'text' by default.
      *
@@ -273,8 +281,10 @@ class  PEAR_Size_OutputFactory implements PEAR_Size_Factory
             $class = "PEAR_Size_Output_". $type;
             return new $class();
         } else {
-            throw new PEAR_Size_Exception("Output driver " .
-                                          "$driverfile could not be found.");
+            throw new PEAR_Size_Exception(
+                "Output driver " .
+                "$driverfile could not be found."
+            );
         }
     }
 }

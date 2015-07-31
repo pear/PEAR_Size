@@ -120,10 +120,10 @@ class PEAR_Size_Output_Html extends PEAR_Size_Output_Driver
      * @return void
      */
     public function generateReport($channel_stats,
-                                   $search_roles,
-                                   $grand_total,
-                                   $display_params)
-    {
+        $search_roles,
+        $grand_total,
+        $display_params
+    ) {
 
         echo "<div class='pear-size'>\n";
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
@@ -141,9 +141,11 @@ class PEAR_Size_Output_Html extends PEAR_Size_Output_Driver
         $details = explode("|", $indices);
 
         $msg  = "Total: ";
-        $msg .= $this->_readableLine($grand_total,
-                $this->_readable,
-                $this->_round);
+        $msg .= $this->_readableLine(
+            $grand_total,
+            $this->_readable,
+            $this->_round
+        );
         $this->display($msg);
 
         foreach ($channel_stats as $channel_name=>$ca) {

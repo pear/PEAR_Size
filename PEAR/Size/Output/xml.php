@@ -26,7 +26,7 @@
 class PEAR_Size_Output_XML extends PEAR_Size_Output_Driver
 {
     /**
-     * generate the report
+     * Generate the report
      *
      * @param array $channel_stats  contains statistics for each channel
      * @param array $search_roles   roles searched for
@@ -36,10 +36,10 @@ class PEAR_Size_Output_XML extends PEAR_Size_Output_Driver
      * @return void
      */
     public function generateReport($channel_stats,
-                                   $search_roles,
-                                   $grand_total,
-                                   $display_params)
-    {
+        $search_roles,
+        $grand_total,
+        $display_params
+    ) {
         $indices = substr($search_roles, 1, strlen($search_roles) - 2);
         $details = explode("|", $indices);
         echo '<?xml version="1.0" encoding="UTF-8"?>', "\n";

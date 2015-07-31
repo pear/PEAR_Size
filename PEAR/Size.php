@@ -52,37 +52,37 @@ class PEAR_Size
 
 
     /**
-     * true if all channels are to be analysed.
+     * True if all channels are to be analysed.
      *
      * @var bool
      */
     private $_all_channels = false;
 
     /**
-     * true if all packages in set channel are to be analysed.
+     * True if all packages in set channel are to be analysed.
      *
      * @var bool $_all
      */
     private $_all = false;
 
     /**
-     * channel[s] to analyse
+     * Channel[s] to analyse
      *
      * @var array
      */
     private $_channel = array();
 
     /**
-     * results of analysis.
+     * Results of analysis.
      *
      * @var array
      */
     private $_channel_stats = null;
 
     /**
-     * array containing the alias name of each channel
+     * Array containing the alias name of each channel
      *
-     * used for identifying channel which can be specified by either fullname
+     * Used for identifying channel which can be specified by either fullname
      * or by alias.
      *
      * @var array
@@ -90,7 +90,7 @@ class PEAR_Size
     private $_channels_alias = array();
 
     /**
-     * array containing full names of all channels
+     * Array containing full names of all channels
      *
      * @var array
      */
@@ -104,9 +104,9 @@ class PEAR_Size
     private $_config = null;
 
     /**
-     * location of default channel in reg_channels array
+     * Location of default channel in reg_channels array
      *
-     * @var int
+     * @var    int
      * @access protected
      */
     private $_default_index = null;
@@ -119,16 +119,16 @@ class PEAR_Size
     private $_driver = null;
 
     /**
-     * array or PEAR_Error of error messages
+     * Array or PEAR_Error of error messages
      *
      * @var array
      */
     public $errors = array();
 
     /**
-     * array of warning messages.
+     * Array of warning messages.
      *
-     * @var array
+     * @var    array
      * @access public
      */
     public $warnings = array();
@@ -143,21 +143,21 @@ class PEAR_Size
     private $_grand_total = 0; //set by _analysePackages
 
     /**
-     * track the longest name
+     * Track the longest name
      *
      * @var int $_name_length
      */
     private $_name_length = 0;
 
     /**
-     * array of options as typically set by Console_Getopt::getopt
+     * Array of options as typically set by Console_Getopt::getopt
      *
      * @var array
      */
     private $_options = array();
 
     /**
-     * present values in a readable form?
+     * Present values in a readable form?
      *
      * Defaults to false
      *
@@ -167,12 +167,12 @@ class PEAR_Size
 
 
     /**
-     *
+     * Whether to display all (inc. zero) values in report.
      */
     private $_all_values = true;
 
     /**
-     * list of channels returned by getChannels method.
+     * List of channels returned by getChannels method.
      *
      * @var array $reg_channels
      */
@@ -186,8 +186,9 @@ class PEAR_Size
     protected $reg = null;
 
     /**
-     * if true, round to SI values
-     * @ var bool $_round
+     * If true, round to SI values
+     *
+     * @var bool $_round
      */
     private $_round = false;
 
@@ -202,7 +203,7 @@ class PEAR_Size
     protected $search_roles = '';
 
     /**
-     * if true, sort results by size.
+     * If true, sort results by size.
      *
      * Default to false.
      *
@@ -211,7 +212,7 @@ class PEAR_Size
     private $_sort_size = false;
 
     /**
-     * if true, don't display report of packages in channel - i.e. stick to summary.
+     * If true, don't display report of packages in channel - i.e. stick to summary.
      *
      * Default to false.
      *
@@ -258,6 +259,7 @@ class PEAR_Size
                     'doc'    => 0,
                     'ext'    => 0,
                     'php'    => 0,
+                    'man'    => 0,
                     'script' => 0,
                     'src'    => 0,
                     'test'   => 0,
@@ -293,14 +295,18 @@ class PEAR_Size
                         $sizes[$role]  += $fsize;
                         $package_total += $fsize;
                     } else {
-                        array_push($this->warnings,
-                                "File \"$installed_location\" does not exist");
+                        array_push(
+                            $this->warnings,
+                            "File \"$installed_location\" does not exist"
+                        );
                     }
                 }
             }
-            array_push($stats, array('package'=>$pkg->getName(),
+            array_push(
+                $stats, array('package'=>$pkg->getName(),
                         'total'=>$package_total,
-                        'sizes'=>$sizes));
+                        'sizes'=>$sizes)
+            );
             $channel_total += $package_total;
         }
         $this->_grand_total += $channel_total;
@@ -308,7 +314,7 @@ class PEAR_Size
     }
 
     /**
-     * class constructor
+     * Class constructor
      *
      * @return void
      */
@@ -322,7 +328,7 @@ class PEAR_Size
         $this->_all_values   = true;
         $this->_verbose      = false;
         $this->_readable     = false;
-        $this->search_roles  = '|data|doc|ext|php|script|src|test|www|';
+        $this->search_roles  = '|data|doc|ext|php|man|script|src|test|www|';
         $this->_sort_size    = false;
         $this->_round        = false;
         $this->_channel      = array();
@@ -353,7 +359,7 @@ class PEAR_Size
     }
 
     /**
-     * set up driver to be used, dependant on specified type.
+     * Set up driver to be used, dependant on specified type.
      *
      * @param string $type name the type of driver (html, text...)
      *
@@ -368,7 +374,7 @@ class PEAR_Size
     }
 
     /**
-     * set verbosity level
+     * Set verbosity level
      *
      * Should generated data (and the associated report) contain more information?
      *
@@ -382,7 +388,7 @@ class PEAR_Size
     }
 
     /**
-     * human readable...
+     * Human readable...
      *
      * Should values be presented in a form more readable to mere mortals?
      *
@@ -432,7 +438,7 @@ class PEAR_Size
     }
 
     /**
-     * set variables for analysing all channels.
+     * Set variables for analysing all channels.
      *
      * @param bool $mode defaults to true.
      *
@@ -476,7 +482,7 @@ class PEAR_Size
     }
 
     /**
-     * set which channel is to be used
+     * Set which channel is to be used
      *
      * @param string $channel_name Either full or alias name of a channel
      *
@@ -491,8 +497,10 @@ class PEAR_Size
         if ($channel_pos === false) {
             $channel_pos = array_search($channel_name, $this->_channels_full);
             if ($channel_pos === false) {
-                array_push($this->errors,
-                           "Channel \"$channel_name\" does not exist");
+                array_push(
+                    $this->errors,
+                    "Channel \"$channel_name\" does not exist"
+                );
             }
         }
         if ($channel_pos !== false) {
@@ -514,7 +522,7 @@ class PEAR_Size
     }
 
     /**
-     * parse options determined by Console_Getopt
+     * Parse options determined by Console_Getopt
      *
      * @param array $options options specified (filled by Console_Getopt::getopt)
      *
@@ -588,7 +596,7 @@ class PEAR_Size
     }
 
     /**
-     * main analysis method
+     * Main analysis method
      *
      * @return void
      */
@@ -643,9 +651,11 @@ class PEAR_Size
             foreach ($search_for as $channel=>$packages) {
                 $index = array_search($channel, $this->_channels_full);
                 //analyse
-                $channel_stats[$channel] = $this->_analysePackages($packages,
-                                                                   $this->reg,
-                                                                   $index);
+                $channel_stats[$channel] = $this->_analysePackages(
+                    $packages,
+                    $this->reg,
+                    $index
+                );
             }
         } elseif (!$this->_all) {
             if (empty($this->_options[1]) && !($this->_all_channels)) {
@@ -655,9 +665,11 @@ class PEAR_Size
                 $packages  = $this->_options[1];
                 $cposition = $this->_channels_full[$index];
                 //analyse
-                $channel_stats[$cposition] = $this->_analysePackages($packages,
-                                                                     $this->reg,
-                                                                     $index);
+                $channel_stats[$cposition] = $this->_analysePackages(
+                    $packages,
+                    $this->reg,
+                    $index
+                );
             }
         } else {
             foreach ($this->_channel as $index=>$given) {
@@ -666,16 +678,18 @@ class PEAR_Size
                 $cposition = $this->_channels_full[$index];
                 sort($packages);
                 //analyse
-                $channel_stats[$cposition] = $this->_analysePackages($packages,
-                                                                     $this->reg,
-                                                                     $index);
+                $channel_stats[$cposition] = $this->_analysePackages(
+                    $packages,
+                    $this->reg,
+                    $index
+                );
             }
         }
         $this->_channel_stats = $channel_stats;
     }
 
     /**
-     * generate the report
+     * Generate the report
      *
      * @return void
      */
@@ -695,10 +709,12 @@ class PEAR_Size
             throw new PEAR_Size_Exception("Channel Data not defined.");
         }
         if ($this->_grand_total != 0) {
-            $this->_driver->generateReport($this->_channel_stats,
-                                           $this->search_roles,
-                                           $this->_grand_total,
-                                           $display_params);
+            $this->_driver->generateReport(
+                $this->_channel_stats,
+                $this->search_roles,
+                $this->_grand_total,
+                $display_params
+            );
         }
     }
 }

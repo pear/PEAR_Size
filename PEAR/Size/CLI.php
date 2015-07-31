@@ -26,34 +26,34 @@
 class PEAR_Size_CLI
 {
     /**
-     * exit status: OK
+     * Exit status: OK
      */
     const PEAR_SIZE_OK =  0;
     /**
-     * exit status: not using the CLI version of php
+     * Exit status: not using the CLI version of php
      */
     const PEAR_SIZE_NON_CLI =  10;
     /**
-     * exit status: arguments/parameters missing
+     * Exit status: arguments/parameters missing
      */
     const PEAR_SIZE_MISSING_ARGS =  11;
     /**
-     * exit status: invalid options specified
+     * Exit status: invalid options specified
      */
     const PEAR_SIZE_INVALID_OPTIONS =  12;
     /**
-     * version of the application/script
+     * Version of the application/script
      */
     const APP_VERSION = "@PACKAGE_VERSION@";
 
 
     /**
-     * application name
+     * Application name
      */
     var $_appName = null;
 
     /**
-    * return name of app/script using this class.
+    * Return name of app/script using this class.
     *
     * @access public
     * @return string
@@ -69,7 +69,7 @@ class PEAR_Size_CLI
     }
 
     /**
-     * set application name (used by plugins to PEAR etc)
+     * Set application name (used by plugins to PEAR etc)
      *
      * @param string $name application name
      *
@@ -80,8 +80,9 @@ class PEAR_Size_CLI
     {
         $this->_appName = $name;
     }
+
     /**
-    * usage
+    * Usage
     *
     * Display either given error message, which can be in an array, or
     * the usage screen.
@@ -147,16 +148,18 @@ class PEAR_Size_CLI
             fputs(STDOUT, "by the PEAR installer.\n");
             fputs(STDOUT, "These are: data, doc, ext, php, script, src, test\n");
 
-            fputs(STDOUT, "\nExamples:
+            fputs(
+                STDOUT, "\nExamples:
                 $ {$app} --all
                 $ {$app} Console_Table
                 $ {$app} -ttest,doc Console_Table
-                $ {$app} --type=test,doc,php -h Console_Table Date_Holidays\n");
+                $ {$app} --type=test,doc,php -h Console_Table Date_Holidays\n"
+            );
         }
     }
 
     /**
-     * run
+     * Run
      *
      * @param mixed $options optional array of options as returned by getopt
      *
@@ -195,9 +198,11 @@ class PEAR_Size_CLI
                     'killzero',
                     );
             //determine which options are being used.
-            $options = Console_Getopt::getopt($argv,
-                                              "aAc:ChHt:SsVvX0",
-                                              $long_options);
+            $options = Console_Getopt::getopt(
+                $argv,
+                "aAc:ChHt:SsVvX0",
+                $long_options
+            );
         }
 
         if (PEAR::isError($options)) {

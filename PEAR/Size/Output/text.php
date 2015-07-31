@@ -72,7 +72,7 @@ class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver
     }
 
     /**
-     * display given text.
+     * Display given text.
      *
      * @param string $text text to be displayed
      *
@@ -87,7 +87,7 @@ class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver
      *
      * Used for displaying detail lines of the report in tabular format.
      *
-     * @return void
+     * @return Console_Table
      */
     public function table()
     {
@@ -104,7 +104,7 @@ class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver
         return $tbl;
     }
     /**
-     * generate the report
+     * Generate the report
      *
      * @param array $channel_stats  contains statistics for each channel
      * @param array $search_roles   roles searched for
@@ -114,19 +114,21 @@ class PEAR_Size_Output_Text extends PEAR_Size_Output_Driver
      * @return void
      */
     public function generateReport($channel_stats,
-                                   $search_roles,
-                                   $grand_total,
-                                   $display_params)
-    {
+        $search_roles,
+        $grand_total,
+        $display_params
+    ) {
         if ($display_params["verbose"]) {
             $this->cols = 3;
         } else {
             $this->cols = 2;
         }
-        parent::generateReport($channel_stats,
-                               $search_roles,
-                               $grand_total,
-                               $display_params);
+        parent::generateReport(
+            $channel_stats,
+            $search_roles,
+            $grand_total,
+            $display_params
+        );
     }
 }
 ?>

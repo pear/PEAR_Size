@@ -23,7 +23,7 @@ require_once 'PEAR/Command/Common.php';
 require_once 'PEAR/Config.php';
 
 /**
- * the class of the hour
+ * The class of the hour
  */
 require_once 'PEAR/Size.php';
 
@@ -54,52 +54,67 @@ class PEAR_Command_Size extends PEAR_Command_Common
             "options"  => array(
                 "all"          => array(
                     "shortopt" => "a",
-                    "doc"      => "display information for all installed packages"),
+                    "doc"      => "display information for all installed packages"
+                ),
                 "allchannels"  => array(
                     "shortopt" => "A",
-                    "doc"      => "list packages from all channels, not just the default one"),
+                    "doc"      => "list packages from all channels, not just the default one"
+                ),
                 "channel"      => array (
                     "shortopt" => "c",
                     "arg"      => "CHANNEL",
-                    "doc"      => "specify which channel"),
+                    "doc"      => "specify which channel"
+                ),
                 "csv"          => array(
                     "shortopt" => "C",
-                    "doc"      => "output results in CSV format (sizes are measured in bytes)."),
+                    "doc"      => "output results in CSV format (sizes are measured in bytes)."
+                ),
                 "human-readable" => array (
                     "shortopt" => "h",
-                    "doc"      => "print sizes in human readable format (for example: 492 B 1KB 7MB)"),
+                    "doc"      => "print sizes in human readable format (for example: 492 B 1KB 7MB)"
+                ),
                 "si"           => array(
                     "shortopt" => "H",
-                    "doc"      => "likewise, but use powers of 1000 not 1024"),
+                    "doc"      => "likewise, but use powers of 1000 not 1024"
+                ),
                 "type" => array(
                     "shortopt" => "t",
                     "arg"      => "TYPES",
-                    "doc"      => "specify what type of files are required for the report"),
+                    "doc"      => "specify what type of files are required for the report"
+                ),
                 "summarise"    => array(
                     "shortopt" => "s",
-                    "doc"      => "display channel summary view"),
+                    "doc"      => "display channel summary view"
+                ),
                 "fsort" => array(
                     "shortopt" => "S",
-                    "doc"      => "sort by file size"),
+                    "doc"      => "sort by file size"
+                ),
                 "verbose" => array(
                     "shortopt" => "v",
-                    "doc"      => "display more detailed information"),
+                    "doc"      => "display more detailed information"
+                ),
                 "version" => array(
                     "shortopt" => "V",
-                    "doc"      => "output version information and exit"),
+                    "doc"      => "output version information and exit"
+                ),
                 "xml"          => array(
                     "shortopt" => "X",
-                    "doc"      => "output results in XML format"),
+                    "doc"      => "output results in XML format"
+                ),
                 "killzero"     => array(
                     "shortopt" => "0",
-                    "doc"      => "do not output zero values in verbose mode"),
+                    "doc"      => "do not output zero values in verbose mode"
+                ),
 
-    ),
-    'doc' => '[PACKAGE ...]
-Display information on how much space an installed PEAR package requires.'));
+            ),
+            'doc' => '[PACKAGE ...]
+Display information on how much space an installed PEAR package requires.'
+        )
+    );
 
     /**
-     * doSize
+     * The doSize method
      *
      * @param mixed $command instance of command object
      * @param mixed $options the command options
@@ -108,13 +123,12 @@ Display information on how much space an installed PEAR package requires.'));
      * @access public
      * @return void
      */
-    function doSize($command, $options, $params)
+    public function doSize($command, $options, $params)
     {
 
         $altered = array();
         foreach ($options as $option=>$value) {
             $altered[] = array($option, $value);
-
         }
         $ar  = array($altered, $params);
         $cli = new PEAR_Size_CLI;
