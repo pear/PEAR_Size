@@ -27,10 +27,10 @@
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" name="Command/Size.php" role="php">
+   <file baseinstalldir="PEAR" name="Command/Size.php" role="php">
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
    </file>
-   <file baseinstalldir="/" name="Command/Size.xml" role="php">
+   <file baseinstalldir="PEAR" name="Command/Size.xml" role="php">
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="PEAR" name="docs/script-usage.txt" role="doc" />
@@ -42,16 +42,14 @@
    <file baseinstalldir="/" name="PEAR/Size/Output/html.php" role="php" />
    <file baseinstalldir="/" name="PEAR/Size/Output/text.php" role="php" />
    <file baseinstalldir="/" name="PEAR/Size/Output/xml.php" role="php" />
-   <file baseinstalldir="" name="scripts/create_package.xml.php" role="script" />
-   <file baseinstalldir="" name="scripts/gendocs.sh" role="script" />
-   <file baseinstalldir="" name="scripts/pearsize.bat" role="script">
+   <file baseinstalldir="/" install-as="pearsize.bat" name="scripts/pearsize.bat" role="script">
     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
     <tasks:windowseol />
    </file>
-   <file baseinstalldir="" name="scripts/pearsize.php" role="script">
+   <file baseinstalldir="/" install-as="pearsize" name="scripts/pearsize.php" role="script">
     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
     <tasks:unixeol />
@@ -108,9 +106,7 @@
   </installconditions>
   <filelist>
    <install as="pearsize.bat" name="scripts/pearsize.bat" />
-   <install as="create_package.xml.php" name="scripts/create_package.xml.php" />
-   <install as="gendocs.sh" name="scripts/gendocs.sh" />
-   <install as="pearsize.php" name="scripts/pearsize.php" />
+   <install as="pearsize" name="scripts/pearsize.php" />
   </filelist>
  </phprelease>
  <phprelease>
