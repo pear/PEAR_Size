@@ -10,10 +10,10 @@
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2010-02-15</date>
- <time>06:44:29</time>
+ <date>2015-08-01</date>
+ <time>00:58:29</time>
  <version>
-  <release>0.2.0</release>
+  <release>1.0.0RC1</release>
   <api>0.1.2</api>
  </version>
  <stability>
@@ -22,8 +22,7 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
-* Bug 14975 - Unit test failures - &quot;Killzero&quot; isn&apos;t rendered
-* Bug 15087 - Unit tests should skip if pear size isn&apos;t installed
+ * Add file size calculations/support for man page role.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -306,6 +305,21 @@ Initial version
    <notes>
 * Bug 14975 - Unit test failures - &quot;Killzero&quot; isn&apos;t rendered
 * Bug 15087 - Unit tests should skip if pear size isn&apos;t installed
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC1</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2015-08-01</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+ * Add file size calculations/support for man page role.
    </notes>
   </release>
  </changelog>
