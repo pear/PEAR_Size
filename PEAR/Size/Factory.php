@@ -208,7 +208,7 @@ class PEAR_Size_Output_Driver
         foreach ($stats as $statistic) {
             $content   = array();
             $content[] = $statistic['package'];
-            $content[] = $this->_readableLine(
+            $content[] = $this->readableLine(
                 $statistic['total'],
                 $this->_readable,
                 $this->_round
@@ -216,14 +216,14 @@ class PEAR_Size_Output_Driver
             if ($this->_verbose) {
                 $line = '';
                 foreach ($details as $detail) {
-                    $value = $this->_readableLine(
+                    $value = $this->readableLine(
                         $statistic['sizes'][$detail],
                         $this->_readable,
                         $this->_round
                     );
                     if (($this->_all_values) or ($value > 0)) {
                         $line .= "$detail: ";
-                        $line .= $this->_readableLine(
+                        $line .= $this->readableLine(
                             $statistic['sizes'][$detail],
                             $this->_readable,
                             $this->_round

@@ -141,7 +141,7 @@ class PEAR_Size_Output_Html extends PEAR_Size_Output_Driver
         $details = explode("|", $indices);
 
         $msg  = "Total: ";
-        $msg .= $this->_readableLine(
+        $msg .= $this->readableLine(
             $grand_total,
             $this->_readable,
             $this->_round
