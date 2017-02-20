@@ -13,25 +13,20 @@
  */
 
 /**
- * update package.xml automagically
+ * Update package.xml automagically
  */
 require_once 'PEAR/PackageFileManager2.php';
 
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
 $notes = "
-* request: integration with pear command
-* request: channel summary
-* request: CSV output
-* request: XML output
-* request: console/text output is neater
-* bug fix: #13549 - all PEAR roles are supported (including 'ext' and 'src')
+* bug fix: Fix method name mismatch.
 ";
 
-$version       = '0.1.2';
+$version       = '1.0.0RC2';
 $api_version   = '0.1.2';
-$stability     = 'alpha';
-$api_stability = 'alpha';
+$stability     = 'beta';
+$api_stability = 'beta';
 
 
 $packagedir  = dirname(__FILE__);
@@ -41,7 +36,7 @@ $options = array(
     'baseinstalldir' => 'PEAR',
     'version' => $version,
     'packagedirectory' => $packagedir,
-    'filelistgenerator' => 'cvs',
+    'filelistgenerator' => 'git',
     'notes' => $notes,
     'package' => 'PEAR_Size',
     'dir_roles' => array(
@@ -65,12 +60,10 @@ $p2->setLicense('LGPL', 'http://www.gnu.org/licenses/lgpl.html');
 $p2->setNotes($notes);
 
 if (isset($_GET['make'])
-    || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
+    || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')
+) {
     $p2->writePackageFile();
 } else {
     $p2->debugPackageFile();
 }
 ?>
-/**
- *
- */

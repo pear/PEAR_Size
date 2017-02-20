@@ -46,6 +46,7 @@ require_once 'PEAR/Size/CLI.php';
  */
 class PEAR_Command_Size extends PEAR_Command_Common
 {
+    // @codingStandardsIgnoreStart
     var $commands = array(
         'size' => array(
             'summary'  => "Information on how much space a package requires.",
@@ -112,6 +113,7 @@ class PEAR_Command_Size extends PEAR_Command_Common
 Display information on how much space an installed PEAR package requires.'
         )
     );
+    // @codingStandardsIgnoreEnd
 
     /**
      * The doSize method

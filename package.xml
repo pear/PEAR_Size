@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.0RC1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.10.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>PEAR_Size</name>
  <channel>pear.php.net</channel>
  <summary>Determine and list how much filespace each installed package consumes.</summary>
@@ -10,10 +10,10 @@
   <email>ken@linux.ie</email>
   <active>yes</active>
  </lead>
- <date>2015-08-01</date>
- <time>00:58:29</time>
+ <date>2017-02-20</date>
+ <time>23:02:27</time>
  <version>
-  <release>1.0.0RC1</release>
+  <release>1.0.0RC2</release>
   <api>0.1.2</api>
  </version>
  <stability>
@@ -22,55 +22,69 @@
  </stability>
  <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
  <notes>
- * Add file size calculations/support for man page role.
+* bug fix: Fix method name mismatch.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="PEAR" name="Command/Size.php" role="php">
-    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-   </file>
-   <file baseinstalldir="PEAR" name="Command/Size.xml" role="php">
-    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-   </file>
-   <file baseinstalldir="PEAR" name="docs/script-usage.txt" role="doc" />
-   <file baseinstalldir="/" name="PEAR/Size.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/CLI.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/Exception.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/Factory.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/Output/csv.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/Output/html.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/Output/text.php" role="php" />
-   <file baseinstalldir="/" name="PEAR/Size/Output/xml.php" role="php" />
-   <file baseinstalldir="/" install-as="pearsize.bat" name="scripts/pearsize.bat" role="script">
-    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
-    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
-    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
-    <tasks:windowseol />
-   </file>
-   <file baseinstalldir="/" install-as="pearsize" name="scripts/pearsize.php" role="script">
-    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-    <tasks:unixeol />
-   </file>
-   <file baseinstalldir="PEAR" name="tests/AllTests.php" role="test" />
-   <file baseinstalldir="PEAR" name="tests/PEAR_Size_TestSuite_Bugs.php" role="test">
-    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
-    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
-    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
-    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-   </file>
-   <file baseinstalldir="PEAR" name="tests/PEAR_Size_TestSuite_CLI.php" role="test">
-    <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
-    <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
-    <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
-    <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
-    <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
-   </file>
-   <file baseinstalldir="PEAR" name="tests/PEAR_Size_TestSuite_Standard.php" role="test" />
+   <dir name="Command">
+    <file baseinstalldir="PEAR" name="Size.php" role="php">
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="PEAR" name="Size.xml" role="php">
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
+   </dir> <!-- /Command -->
+   <dir name="docs">
+    <file baseinstalldir="PEAR" name="script-usage.txt" role="doc" />
+   </dir> <!-- /docs -->
+   <dir name="PEAR">
+    <dir name="Size">
+     <dir name="Output">
+      <file baseinstalldir="/" name="csv.php" role="php" />
+      <file baseinstalldir="/" name="html.php" role="php" />
+      <file baseinstalldir="/" name="text.php" role="php" />
+      <file baseinstalldir="/" name="xml.php" role="php" />
+     </dir> <!-- /PEAR/Size/Output -->
+     <file baseinstalldir="/" name="CLI.php" role="php" />
+     <file baseinstalldir="/" name="Exception.php" role="php" />
+     <file baseinstalldir="/" name="Factory.php" role="php" />
+    </dir> <!-- /PEAR/Size -->
+    <file baseinstalldir="/" name="Size.php" role="php" />
+   </dir> <!-- /PEAR -->
+   <dir name="scripts">
+    <file baseinstalldir="/" install-as="pearsize.bat" name="pearsize.bat" role="script">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+     <tasks:windowseol />
+    </file>
+    <file baseinstalldir="/" install-as="pearsize" name="pearsize.php" role="script">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+     <tasks:unixeol />
+    </file>
+   </dir> <!-- /scripts -->
+   <dir name="tests">
+    <file baseinstalldir="PEAR" name="AllTests.php" role="test" />
+    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_Bugs.php" role="test">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_CLI.php" role="test">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+     <tasks:replace from="@PEAR-DIR@" to="php_dir" type="pear-config" />
+     <tasks:replace from="@DATA-DIR@" to="data_dir" type="pear-config" />
+     <tasks:replace from="@PACKAGE_VERSION@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="PEAR" name="PEAR_Size_TestSuite_Standard.php" role="test" />
+   </dir> <!-- /tests -->
    <file baseinstalldir="PEAR" name="TODO" role="doc" />
-  </dir>
+  </dir> <!-- / -->
  </contents>
  <dependencies>
   <required>
@@ -116,76 +130,127 @@
  <changelog>
   <release>
    <version>
-    <release>0.0.1</release>
-    <api>0.0.1</api>
+    <release>1.0.0RC2</release>
+    <api>0.1.2</api>
    </version>
    <stability>
-    <release>alpha</release>
-    <api>alpha</api>
+    <release>beta</release>
+    <api>beta</api>
    </stability>
-   <date>2008-01-05</date>
+   <date>2017-02-20</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-Initial version
+* bug fix: Fix method name mismatch.
    </notes>
   </release>
   <release>
    <version>
-    <release>0.1.1</release>
-    <api>0.1.0</api>
+    <release>1.0.0RC1</release>
+    <api>0.1.2</api>
    </version>
    <stability>
-    <release>alpha</release>
-    <api>alpha</api>
+    <release>beta</release>
+    <api>beta</api>
    </stability>
-   <date>2008-03-31</date>
+   <date>2015-08-01</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* request: channel summary
-* request: CSV output
-* request: XML output
-* request: console/text output is neater
-* bug fix: all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+* Add file size calculations/support for man page role.
    </notes>
   </release>
   <release>
    <version>
-    <release>0.1.2</release>
+    <release>0.2.0</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2010-02-15</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Bug 14975 - Unit test failures - &quot;Killzero&quot; isn&apos;t rendered
+* Bug 15087 - Unit tests should skip if pear size isn&apos;t installed
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.9</release>
     <api>0.1.2</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-03-31</date>
+   <date>2008-09-24</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* request: channel summary
-* request: CSV output
-* request: XML output
-* request: console/text output is neater
-* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+* now dependant on version 1.1.0 of Console_Table
+* Fix Bug #14764: html output is ugly [kguest]
+* Fix Bug #14975: Unit test failures - &apos;Killzero&apos; isn&apos;t rendered [kguest]
+* Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
    </notes>
   </release>
   <release>
    <version>
-    <release>0.1.3</release>
+    <release>0.1.8</release>
     <api>0.1.2</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-04-08</date>
+   <date>2008-09-24</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
-* request: #13441 - console/text output is neater
-* request: #13442 - channel summary
-* request: #13527 - CSV output
-* request: #13550 - XML output
-* request: #13572 - move cli processing intelligence from PEAR_Size to separate class
-* request: #13573 - integration with pear command
+* now dependant on version 1.1.0 of Console_Table
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.7</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-09-21</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #14465: warning if files (which are registered as installed) are missing
+* Fix Bug #14474: channel selection doesn&apos;t work
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.6</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-08-07</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #14465: warning if files (which are registered as installed) are missing
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.5</release>
+    <api>0.1.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-08-07</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+* Fix Bug #14464: fatal error occurs if Output driver is set incorrectly
    </notes>
   </release>
   <release>
@@ -214,112 +279,76 @@ Initial version
   </release>
   <release>
    <version>
-    <release>0.1.5</release>
+    <release>0.1.3</release>
     <api>0.1.2</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-08-07</date>
+   <date>2008-04-08</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* Fix Bug #14464: fatal error occurs if Output driver is set incorrectly
+* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
+* request: #13441 - console/text output is neater
+* request: #13442 - channel summary
+* request: #13527 - CSV output
+* request: #13550 - XML output
+* request: #13572 - move cli processing intelligence from PEAR_Size to separate class
+* request: #13573 - integration with pear command
    </notes>
   </release>
   <release>
    <version>
-    <release>0.1.6</release>
+    <release>0.1.2</release>
     <api>0.1.2</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-08-07</date>
+   <date>2008-03-31</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* Fix Bug #14465: warning if files (which are registered as installed) are missing
+* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: #13549 - all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
    </notes>
   </release>
   <release>
    <version>
-    <release>0.1.7</release>
-    <api>0.1.2</api>
+    <release>0.1.1</release>
+    <api>0.1.0</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-09-21</date>
+   <date>2008-03-31</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* Fix Bug #14465: warning if files (which are registered as installed) are missing
-* Fix Bug #14474: channel selection doesn&apos;t work
+* request: channel summary
+* request: CSV output
+* request: XML output
+* request: console/text output is neater
+* bug fix: all PEAR roles are supported (including &apos;ext&apos; and &apos;src&apos;)
    </notes>
   </release>
   <release>
    <version>
-    <release>0.1.8</release>
-    <api>0.1.2</api>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
    </version>
    <stability>
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2008-09-24</date>
+   <date>2008-01-05</date>
    <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
    <notes>
-* now dependant on version 1.1.0 of Console_Table
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>0.1.9</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>alpha</release>
-    <api>alpha</api>
-   </stability>
-   <date>2008-09-24</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>
-* now dependant on version 1.1.0 of Console_Table
-* Fix Bug #14764: html output is ugly [kguest]
-* Fix Bug #14975: Unit test failures - &apos;Killzero&apos; isn&apos;t rendered [kguest]
-* Implement Feature #14748: option to not display zero lines in verbose mode [kguest]
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>0.2.0</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>beta</release>
-    <api>beta</api>
-   </stability>
-   <date>2010-02-15</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>
-* Bug 14975 - Unit test failures - &quot;Killzero&quot; isn&apos;t rendered
-* Bug 15087 - Unit tests should skip if pear size isn&apos;t installed
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>1.0.0RC1</release>
-    <api>0.1.2</api>
-   </version>
-   <stability>
-    <release>beta</release>
-    <api>beta</api>
-   </stability>
-   <date>2015-08-01</date>
-   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
-   <notes>
- * Add file size calculations/support for man page role.
+Initial version
    </notes>
   </release>
  </changelog>

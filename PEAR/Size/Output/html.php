@@ -40,7 +40,7 @@ class PEAR_Size_HTML_Table extends HTML_Table
     }
 
     /**
-     * addRow
+     * Add row to output
      *
      * @param string $contents data to add to row
      *
@@ -58,9 +58,9 @@ class PEAR_Size_HTML_Table extends HTML_Table
     }
 
     /**
-     * return table [in HTML]
+     * Return table [in HTML]
      *
-     * return table - an alias for HTML_Table's toHTML method in an effort to
+     * Return table - an alias for HTML_Table's toHTML method in an effort to
      * have consistently named methods for components that do similar work.
      *
      * @return void
@@ -84,7 +84,7 @@ class PEAR_Size_HTML_Table extends HTML_Table
 class PEAR_Size_Output_Html extends PEAR_Size_Output_Driver
 {
     /**
-     * display given text.
+     * Display given text.
      *
      * @param string $text specified text to be displayed
      *
@@ -110,7 +110,7 @@ class PEAR_Size_Output_Html extends PEAR_Size_Output_Driver
         return $tbl;
     }
     /**
-     * generate the report
+     * Generate the report
      *
      * @param array $channel_stats  contains statistics for each channel
      * @param array $search_roles   roles searched for
